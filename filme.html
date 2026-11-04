@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RomyStream — Movies & TV</title>
+<style>
+:root{--bg:#05070f;--panel:#0b1020;--neon:#22d3ee;--violet:#8b5cf6;--text:#e5e7eb;--muted:#94a3b8;--focus:#22d3ee}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Arial}
+body{background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;z-index:20;background:#020617;border-bottom:1px solid rgba(34,211,238,.15)}
+header .wrap{display:flex;gap:.75rem;align-items:center;padding:1rem 1.5rem;flex-wrap:wrap}
+header h1{flex:1;font-weight:800;min-width:180px}
+header h1 span{color:var(--neon)}
+header input,select{background:var(--panel);color:var(--text);border:1px solid rgba(139,92,246,.25);padding:.55rem .7rem;border-radius:12px;height:42px}
+
+.btn-extrazone {
+  background: linear-gradient(135deg, var(--violet), var(--neon));
+  color: #020617 !important;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0 .9rem;
+  height: 42px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  transition: transform 0.15s;
+}
+
+main{padding:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;align-items:start}
+.card{background:#020617;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s,outline .1s;outline:2px solid transparent;position:relative}
+.card:hover{transform:translateY(-6px) scale(1.03)}
+.card img{width:100%;height:270px;display:block;object-fit:cover;background:#020617}
+.card .meta{padding:.75rem}
+.badge{font-size:.75rem;color:var(--neon)}
+.pagination{display:flex;justify-content:center;gap:.75rem;padding:1.5rem 0 2.5rem}
+button{background:linear-gradient(135deg,var(--violet),var(--neon));color:#020617;border:none;border-radius:14px;padding:.45rem .8rem;cursor:pointer;transition:transform .15s,box-shadow .15s,outline .1s;outline:2px solid transparent}
+button.ghost{background:transparent;color:var(--text);border:1px solid rgba(34,211,238,.25);height:42px}
+
+/* STIL SPECIAL PENTRU SERVERUL ACTIV CURENT */
+button.ghost.active-server {
+  border: 1px solid var(--neon) !important;
+  color: var(--neon) !important;
+  background: rgba(34, 211, 238, 0.15) !important;
+}
+
+.modal{position:fixed;inset:0;background:rgba(2,6,23,.9);display:none;justify-content:center;align-items:center;z-index:30}
+.modal-box{background:#020617;width:96%;max-width:1200px;border-radius:22px;max-height:92vh;overflow:auto;padding:1rem;position:relative}
+.close{position:absolute;top:.6rem;right:.6rem;z-index:5;width:44px;height:44px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;color:#fff;background:rgba(139,92,246,.25);border:1px solid rgba(34,211,238,.35);border-radius:50%;transition:transform .15s,background .15s,outline .1s;outline:2px solid transparent}
+.close:hover{background:rgba(34,211,238,.35)}
+.player-wrap iframe{width:100%;height:440px;border-radius:18px;border:1px solid rgba(34,211,238,.2);transition:outline .1s,box-shadow .1s}
+.episodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-top:1rem}
+.episode{cursor:pointer;border-radius:14px;overflow:hidden;background:#020617;border:1px solid rgba(34,211,238,.15);transition:transform .15s,outline .1s;outline:2px solid transparent}
+.episode span{display:block;padding:.8rem;font-size:.8rem;text-align:center;font-weight:600}
+.details-wrap{padding-right:56px}
+.details-wrap p{color:var(--muted);font-size:0.92rem;margin:0.5rem 0 1rem 0;line-height:1.4}
+:focus{outline:none}
+
+/* BORDURA DE FOCUS ACTUALIZATĂ CU VARIABILA --FOCUS */
+.nav-focus{outline:3px solid var(--focus) !important;outline-offset:2px;box-shadow:0 0 0 4px rgba(34,211,238,.25);transform:scale(1.04);border-radius:14px}
+.card.nav-focus,.episode.nav-focus,.btn-extrazone.nav-focus{transform:translateY(-4px) scale(1.03)}
+#prev.nav-focus,#next.nav-focus{outline:3px solid var(--focus) !important;outline-offset:3px;box-shadow:0 0 0 5px rgba(34,211,238,.35),0 0 18px rgba(34,211,238,.55) !important;transform:scale(1.08);border-radius:14px}
+.hint{text-align:center;color:var(--muted);font-size:.72rem;padding:.25rem 0 .75rem}
+.player-wrap{position:relative}
+.player-wrap iframe.nav-focus{outline:4px solid var(--focus) !important;outline-offset:3px;box-shadow:0 0 0 6px rgba(34,211,238,.4),0 0 24px rgba(34,211,238,.6) !important;border-radius:18px}
+.player-wrap.player-mode iframe{outline:4px solid var(--focus) !important;outline-offset:3px;box-shadow:0 0 0 6px rgba(34,211,238,.45),0 0 28px rgba(34,211,238,.7) !important;border-radius:18px}
+#playerModeBadge{display:none;position:absolute;top:8px;left:8px;z-index:6;background:rgba(2,6,23,.9);color:#ffffff;border:1px solid rgba(255,255,255,.7);border-radius:10px;padding:.35rem .6rem;font-size:.72rem;font-weight:700;letter-spacing:.02em}
+.player-wrap.player-mode #playerModeBadge{display:block}
+.player-hint{text-align:center;color:var(--muted);font-size:.74rem;padding:.5rem 0 .25rem}
+
+.card.serial-special {
+  border: 2px solid var(--neon);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+.card.serial-special b {
+  color: var(--neon);
+}
+
+.modal-box.html-fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  background: #000 !important;
+  z-index: 9999 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+.modal-box.html-fullscreen .player-wrap iframe {
+  height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+.modal-box.html-fullscreen .details-wrap,
+.modal-box.html-fullscreen .player-hint,
+.modal-box.html-fullscreen #episodes,
+.modal-box.html-fullscreen .close,
+.modal-box.html-fullscreen #playerModeBadge {
+  display: none !important;
+}
+.btn-fs {
+  background: var(--neon) !important;
+  color: #020617 !important;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+}
+
+.film-container {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.8rem;
+  background: #090d1a;
+  padding: 0.6rem;
+  border-radius: 16px;
+  border: 1px solid rgba(34, 211, 238, 0.1);
+  align-items: center;
+}
+.film-container img {
+  width: 100%;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+.ep-desc {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: normal;
+  padding: 0 0.8rem 0.8rem 0.8rem;
+  margin-top: -0.4rem;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.watched-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #10b981;
+  color: #020617;
+  font-weight: bold;
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+.episode.watched span::after {
+  content: " ✔ Vizionat";
+  color: #10b981;
+  font-weight: bold;
+  font-size: 0.72rem;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* ===== AUTOPLAY: notificare trecere la urmatorul videoclip ===== */
+#autoplayToast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%) translateY(18px);
+  background: rgba(3, 10, 24, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  color: #e2f6ff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  max-width: 90vw;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 99999;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.6);
+}
+#autoplayToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.btn-autoplay {
+  background: transparent;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  color: var(--neon);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 0 0 10px 8px;
+  cursor: pointer;
+}
+.btn-autoplay.off { border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; }
+.yt-status { font-size: 10px; color: #9ca3af; margin: 0 0 10px 6px; opacity: 0.85; }
+.show-pager { flex-wrap: wrap; align-items: center; padding: 1.25rem 0 .5rem; }
+.show-pager span { color: var(--muted); font-size: .85rem; text-align: center; }
+.show-pager button:disabled { cursor: default; }
+</style>
+<script src="las_fierbinti.js"></script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Romy<span>Stream</span></h1>
+    
+    <button class="btn-extrazone" id="btnExtraZone" tabindex="0">ExtraZone</button>
+
+    <select id="type">
+      <option value="movie">Filme</option>
+      <option value="tv">Seriale</option>
+    </select>
+
+    <select id="cat"></select>
+    <select id="genre"></select>
+    <input id="search" placeholder="Caută titluri…" />
+  </div>
+</header>
+
+<div class="hint">Folosește săgețile telecomenzii pentru navigare, OK pentru selecție, OK pe player pentru a-l acționa, X sau Back pentru închidere.</div>
+
+<main id="main"></main>
+
+<div class="pagination" id="paginationSection">
+  <button class="ghost" id="prev">Prev</button>
+  <button id="next">Next</button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box" id="modalBox">
+    <div class="close" id="close" role="button" tabindex="0" aria-label="Inchide">✕</div>
+    <div id="details" class="details-wrap"></div>
+    <div class="player-wrap" id="player"></div>
+    <div id="episodes"></div>
+  </div>
+</div>
+
+<script>
+const API='8ad3c21a92a64da832c559d58cc63ab4';
+const BASE='https://api.themoviedb.org/3';
+const IMG='https://image.tmdb.org/t/p/w500';
+
+const SOURCES=[
+ {id:'vidsrcme',name:'VidSrc ME'},
+ {id:'filesun',name:'FileSuN'},
+ {id:'videasy',name:'Videasy'},
+ {id:'superembed',name:'SuperEmbed'},
+ {id:'2embed',name:'2Embed'},
+ {id:'stelar',name:'StelarRip'}
+];
+const DEFAULT_SOURCE='vidsrcme';
+
+let page=1,query='',media='movie', isExtraZoneMode=false;
+let lastCard=null;              
+let modalOpen=false;
+const main=document.getElementById('main');
+const type=document.getElementById('type');
+const cat=document.getElementById('cat');
+const genre=document.getElementById('genre');
+const search=document.getElementById('search');
+const paginationSection=document.getElementById('paginationSection');
+const btnExtraZone=document.getElementById('btnExtraZone');
+const prev=document.getElementById('prev');
+const next=document.getElementById('next');
+
+const CATS={
+  movie:[['popular','Populare'],['now_playing','La cinema acum'],['upcoming','În curând'],['top_rated','Cele mai apreciate']],
+  tv:[['popular','Populare'],['airing_today','Difuzate azi'],['on_the_air','La TV acum'],['top_rated','Cele mai apreciate']]
+};
+const GENRES={
+  movie:[['','Toate genurile'],['28','Acțiune'],['12','Aventură'],['16','Animație'],['35','Comedie'],['80','Crimă'],['99','Documentar'],['18','Dramă'],['10751','Familie'],['14','Fantezie'],['36','Istorie'],['27','Horror'],['10402','Muzică'],['9648','Mister'],['10749','Romantic'],['878','SF'],['53','Thriller'],['10752','Război'],['37','Western']],
+  tv:[['','Toate genurile'],['10759','Acțiune & Aventură'],['16','Animație'],['35','Comedie'],['80','Crimă'],['99','Documentar'],['18','Dramă'],['10751','Familie'],['10762','Copii'],['9648','Mister'],['10764','Reality'],['10765','SF & Fantezie'],['10768','Război & Politică'],['37','Western']]
+};
+
+function markAsWatched(id) {
+  let watched = JSON.parse(localStorage.getItem('romy_watched_history') || '[]');
+  if (!watched.includes(id)) {
+    watched.push(id);
+    localStorage.setItem('romy_watched_history', JSON.stringify(watched));
+  }
+}
+function isWatched(id) {
+  let watched = JSON.parse(localStorage.getItem('romy_watched_history') || '[]');
+  return watched.includes(id);
+}
+
+function verifyAllWatched(epListIds) {
+  if (!epListIds || epListIds.length === 0) return false;
+  return epListIds.every(id => isWatched(id));
+}
+
+function fillMenus(){
+  const m=type.value;
+  cat.innerHTML=CATS[m].map(c=>`<option value='${c[0]}'>${c[1]}</option>`).join('');
+  genre.innerHTML=GENRES[m].map(g=>`<option value='${g[0]}'>${g[1]}</option>`).join('');
+  
+  if(isExtraZoneMode) {
+    cat.style.display = 'none';
+    genre.style.display = 'none';
+    search.style.display = 'none';
+    paginationSection.style.display = 'none';
+  } else {
+    cat.style.display = 'inline-block';
+    genre.style.display = 'inline-block';
+    search.style.display = 'inline-block';
+    paginationSection.style.display = 'flex';
+  }
+}
+
+const modal=document.getElementById('modal');
+const modalBox=document.getElementById('modalBox');
+const details=document.getElementById('details');
+const player=document.getElementById('player');
+const episodes=document.getElementById('episodes');
+const closeBtn=document.getElementById('close');
+
+function saveState(state){localStorage.setItem('neostream',JSON.stringify(state))}
+function loadState(){
+  try { return JSON.parse(localStorage.getItem('neostream')||'{}') || {}; } catch(e) { return {}; }
+}
+
+async function load(){
+  if(isExtraZoneMode) {
+    renderExtraZoneOnly();
+    return;
+  }
+  
+  main.innerHTML = "<div style='padding:20px; color:var(--muted); text-align:center;'>Se încarcă filmele...</div>";
+  media=type.value;
+  let url='';
+  const g=genre.value;
+  const c=cat.value;
+  if(query){
+    url=`${BASE}/search/${media}?api_key=${API}&query=${encodeURIComponent(query)}&language=ro-RO&page=${page}`;
+  } else if(g){
+    const sort = c==='top_rated' ? 'vote_average.desc' : (c==='upcoming'||c==='on_the_air'||c==='airing_today' ? 'primary_release_date.desc' : 'popularity.desc');
+    url=`${BASE}/discover/${media}?api_key=${API}&with_genres=${g}&sort_by=${sort}&vote_count.gte=50&language=ro-RO&page=${page}`;
+  } else {
+    url=`${BASE}/${media}/${c||'popular'}?api_key=${API}&language=ro-RO&page=${page}`;
+  }
+
+  try {
+    const r=await fetch(url);
+    if (!r.ok) throw new Error("Status HTTP invalid");
+    const d=await r.json();
+    if (!d.results || d.results.length === 0) {
+      main.innerHTML = "<div style='padding:20px; color:#ef4444; text-align:center;'>Nu s-au găsit rezultate.</div>";
+      return;
+    }
+    render(d.results||[]);
+  } catch(err) {
+    main.innerHTML = "<div style='padding:20px; color:#ef4444; text-align:center;'>Eroare de conectare TMDB!</div>";
+  }
+}
+
+// URL-ul listei principale ExtraZone. Adaugi/editezi carduri DOAR aici, în ExtraZone.js,
+// niciodată în filme.html.
+const EXTRAZONE_LIST_URL = 'https://documentarys.do.am/APK/ExtraZone/ExtraZone.js';
+let extraZoneItemsCache = null;
+
+const TORRENT_MOVIES_POSTER = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22750%22 viewBox=%220 0 500 750%22%3E%3Crect width=%22500%22 height=%22750%22 fill=%22%23020712%22/%3E%3Crect x=%2234%22 y=%2234%22 width=%22432%22 height=%22682%22 rx=%2234%22 fill=%22%23030a18%22 stroke=%22%2322d3ee%22 stroke-width=%225%22/%3E%3Ccircle cx=%22250%22 cy=%22235%22 r=%22118%22 fill=%22none%22 stroke=%22%2322d3ee%22 stroke-width=%2220%22/%3E%3Cpath d=%22M224 158v154l112-77z%22 fill=%22%23ffffff%22/%3E%3Ctext x=%22250%22 y=%22462%22 text-anchor=%22middle%22 font-family=%22Arial Black,Arial%22 font-size=%2248%22 fill=%22%23ffffff%22%3ETorrent%3C/text%3E%3Ctext x=%22250%22 y=%22526%22 text-anchor=%22middle%22 font-family=%22Arial Black,Arial%22 font-size=%2254%22 fill=%22%2322d3ee%22%3EMovies%3C/text%3E%3Ctext x=%22250%22 y=%22590%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%2394a3b8%22%3EMagnet Player%3C/text%3E%3C/svg%3E";
+const TORRENT_MOVIES_LIST_URL = 'https://documentarys.do.am/APK/filmetorrent.txt';
+const SINTEL_MAGNET = "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent";
+const TORRENT_MOVIES_LOGO = 'https://documentarys.do.am/APK/logo/Torrent.jpg';
+const TORRENT_MOVIES_CARD = { id: 'ez-torrentmovies', title: 'Filme Torrent', badge: '★ Filme Magnet', img: TORRENT_MOVIES_LOGO };
+const TORRENT_MOVIES_FALLBACK = [
+  { nume: 'Sintel', url: SINTEL_MAGNET, imagine: TORRENT_MOVIES_POSTER, descriere: 'Film de proba legal pentru playerul torrent.' }
+];
+let torrentMoviesCache = null;
+
+// Handlere speciale (parsing/UI diferit față de card-ul generic). Orice id care NU e listat
+// aici va folosi automat handlerul generic openScriptBasedShow/getScriptBasedShowEpisodes,
+// deci un card nou adăugat în ExtraZone.js merge din prima, fără cod suplimentar.
+const EXTRAZONE_SPECIAL_HANDLERS = {
+  'ez-torrentmovies': { fn: openTorrentMovies, getEps: getTorrentMoviesEpisodes },
+  'ez-trafic': { fn: openTrafic, getEps: getTraficEpisodes },
+  'ez-lasfierbinti': { fn: openLasFierbinti, getEps: getLasFierbintiEpisodes },
+  'ez-camatarii': { fn: openCamatarii, getEps: getCamatariiEpisodes },
+  'ez-parfumlavanda': { fn: openParfumLavanda, getEps: getParfumLavandaEpisodes },
+  'ez-plaha': { fn: openPlaha, getEps: getPlahaEpisodes },
+  'ez-filmedublate': { fn: openFilmeDublate, getEps: () => Promise.resolve([]) },
+  'ez-filmesubtitrate': { fn: openFilmeSubtitrate, getEps: () => Promise.resolve([]) }
+};
+
+function loadExtraZoneList() {
+  if (extraZoneItemsCache) return Promise.resolve(extraZoneItemsCache);
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = EXTRAZONE_LIST_URL + '?t=' + new Date().getTime();
+    script.onload = () => {
+      const remoteItems = Array.isArray(window.dateExtraZoneItems) ? window.dateExtraZoneItems : [];
+      extraZoneItemsCache = [TORRENT_MOVIES_CARD, ...remoteItems.filter(item => item && item.id !== TORRENT_MOVIES_CARD.id)];
+      script.remove();
+      resolve(extraZoneItemsCache);
+    };
+    script.onerror = () => { script.remove(); extraZoneItemsCache = [TORRENT_MOVIES_CARD]; resolve(extraZoneItemsCache); };
+    document.head.appendChild(script);
+  });
+}
+
+function resolveExtraZoneItem(raw) {
+  const special = EXTRAZONE_SPECIAL_HANDLERS[raw.id];
+  if (special) {
+    return { ...raw, fn: (c) => special.fn(c), getEps: () => special.getEps() };
+  }
+  if (raw.special === 'seriale_straine') {
+    return { ...raw, fn: (c) => openSerialeStraine(c), getEps: () => getSerialeStraineShowEpisodes() };
+  }
+  // Handler generic: merge pentru orice card nou definit doar cu title/img/jsUrl.
+  return {
+    ...raw,
+    fn: (c) => openScriptBasedShow(raw.title, raw.jsUrl, c, raw.img),
+    getEps: () => getScriptBasedShowEpisodes(raw.title, raw.jsUrl)
+  };
+}
+
+async function renderExtraZoneOnly() {
+  main.innerHTML = "<div style='padding:20px; color:var(--muted); text-align:center;'>Se încarcă ExtraZone...</div>";
+
+  const rawItems = await loadExtraZoneList();
+  if (isExtraZoneMode !== true) return; // utilizatorul a schimbat modul între timp
+  main.innerHTML = '';
+
+  if (!rawItems.length) {
+    main.innerHTML = "<div style='padding:20px; color:#ef4444; text-align:center;'>Nu s-a putut încărca lista ExtraZone.</div>";
+    return;
+  }
+
+  const itemsZone = rawItems.map(resolveExtraZoneItem);
+
+  itemsZone.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card serial-special';
+    card.tabIndex = 0;
+    
+    card.innerHTML = `<img src='${item.img}'><div class='meta'><b>${item.title}</b><div class='badge'>${item.badge}</div></div>`;
+    
+    item.getEps().then(epListIds => {
+      if(epListIds && epListIds.length > 0 && verifyAllWatched(epListIds)) {
+        if(!card.querySelector('.watched-badge')) {
+          card.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+        }
+      }
+    });
+
+    card.onclick = () => { item.fn(card); };
+    main.appendChild(card);
+  });
+
+  if(!modalOpen) {
+    const first = main.querySelector('.card');
+    if(first) setFocus(first);
+  }
+}
+
+function render(items){
+  main.innerHTML='';
+  items.forEach(i=>{
+    if(!i.poster_path)return;
+    const c=document.createElement('div');c.className='card';c.tabIndex=0;
+    const uniqueId = `tmdb-${media}-${i.id}`;
+    
+    c.innerHTML=`<img src='${IMG+i.poster_path}'><div class='meta'><b>${i.title||i.name}</b><div class='badge'>★ ${i.vote_average}</div></div>`;
+    
+    if(media === 'movie') {
+      if (isWatched(uniqueId)) c.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+    } else {
+      if (isWatched(`tmdb-tv-complet-${i.id}`)) c.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+    }
+
+    c.onclick=()=>{
+      if(media === 'movie') {
+        markAsWatched(uniqueId);
+        if(!c.querySelector('.watched-badge')) c.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+      }
+      openDetails(i,c);
+    };
+    main.appendChild(c);
+  });
+  if(!modalOpen && document.activeElement!==search){
+    const first=main.querySelector('.card');
+    if(first) setFocus(first);
+  }
+}
+
+function injectFullscreenAttributes(iframe) {
+  iframe.setAttribute('allowfullscreen', 'true');
+  iframe.setAttribute('webkitallowfullscreen', 'true');
+  iframe.setAttribute('mozallowfullscreen', 'true');
+  iframe.setAttribute('msallowfullscreen', 'true');
+  iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture');
+}
+
+function isDirectVideo(url) {
+  if (!url) return false;
+  const urlLower = url.trim().toLowerCase();
+  return urlLower.includes('.m3u8') || urlLower.includes('.mp4') || urlLower.includes('.mkv') || urlLower.includes('.avi') || urlLower.includes('.mp3');
+}
+
+/* ===================== PAGINARE lista de episoade (25 pe pagina) =====================
+   Listele pot avea mii de episoade (ex: 2309 pe "Burlacii"), deci se randeaza doar pagina
+   curenta. autoplayList rămâne insa lista COMPLETA: melodia 25 (ultima de pe pagina 1)
+   trece automat la melodia 26, iar pagina se schimba singura. */
+const EPISOADE_PER_PAGE = 25;
+let showAllEpisodes = [];        // toate episoadele listei curente
+let showPage = 1;                // pagina afisata acum
+let showContext = null;          // {titlu, scriptUrl, card, posterUrl, onAdvance}
+
+function showEpisodeId(titlu, ep) {
+  return `show-${encodeURIComponent(titlu)}-${encodeURIComponent((ep && (ep.nume || ep.url)) || '')}`;
+}
+
+function showTotalPages() { return Math.max(1, Math.ceil(showAllEpisodes.length / EPISOADE_PER_PAGE)); }
+
+/* Leaga fiecare intrare din lista completa de cardul ei din pagina afisata (daca exista).
+   Fara asta, marcajul "Vizionat" nu ajunge pe cardurile de pe alte pagini. */
+function bindAutoplayEls() {
+  const cont = document.getElementById('episodes');
+  autoplayList.forEach(it => {
+    it.el = (it.epId && cont) ? cont.querySelector('[data-ep-id="' + it.epId + '"]') : null;
+  });
+}
+
+/* Daca episodul i nu e pe pagina afisata, o afisam (folosit la trecerea automata). */
+function ensureShowPageFor(i) {
+  if (!showAllEpisodes.length) return false;
+  const p = Math.min(showTotalPages(), Math.floor(i / EPISOADE_PER_PAGE) + 1);
+  if (p === showPage) return false;
+  renderShowPage(p, true);
+  return true;
+}
+
+function scrollToListStart() {
+  const cont = document.getElementById('episodes');
+  if (!cont || !cont.scrollIntoView) return;
+  try { cont.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (_) { cont.scrollIntoView(); }
+}
+
+function renderShowPage(pagina, keepScroll) {
+  const cont = document.getElementById('episodes');
+  if (!cont || !showContext) return;
+  const total = showAllEpisodes.length;
+  const totalPagini = showTotalPages();
+  // daca utilizatorul naviga lista (telecomanda), pastram focusul si dupa re-randare
+  const focusedEl = cont.querySelector('.nav-focus');
+  const focusInList = !!focusedEl || (document.activeElement && cont.contains(document.activeElement));
+  const focusedEp = focusedEl ? focusedEl.dataset.epId : null;
+  showPage = Math.min(Math.max(1, pagina), totalPagini);
+  cont.innerHTML = '';
+
+  const startIdx = (showPage - 1) * EPISOADE_PER_PAGE;
+  const felia = showAllEpisodes.slice(startIdx, startIdx + EPISOADE_PER_PAGE);
+
+  felia.forEach((ep, i) => {
+    const idxGlobal = startIdx + i;
+    const container = document.createElement('div'); container.className = 'film-container';
+    container.innerHTML = `<img src="${ep.imagine || 'https://documentarys.do.am/APK/logo/ChatGPT_Image_Jul_13-2026-08_49_27_PM.jpg'}">`;
+    const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+    el.dataset.epId = showEpisodeId(showContext.titlu, ep);
+    if (isWatched(el.dataset.epId)) el.classList.add('watched');
+    el.innerHTML = `<span>${ep.nume}</span>`;
+    if (ep.descriere) el.innerHTML += `<span class="ep-desc">${ep.descriere}</span>`;
+    el.onclick = () => {
+      markAsWatched(el.dataset.epId); el.classList.add('watched');
+      if (typeof showContext.onAdvance === 'function') { try { showContext.onAdvance(); } catch (_) {} }
+      autoplayIndex = idxGlobal;
+      const existentIframe = player.querySelector('iframe'); if (existentIframe) existentIframe.remove();
+      player.insertBefore(createPlayerIframe(ep.url), player.firstChild); scrollToPlayer();
+    };
+    container.appendChild(el); cont.appendChild(container);
+  });
+
+  if (totalPagini > 1) {
+    const nav = document.createElement('div');
+    nav.className = 'pagination show-pager';
+    nav.innerHTML =
+      `<button class="ghost" id="showFirst" tabindex="0" ${showPage <= 1 ? 'disabled style="opacity:.4;"' : ''}>« Prima</button>` +
+      `<button class="ghost" id="showPrev" tabindex="0" ${showPage <= 1 ? 'disabled style="opacity:.4;"' : ''}>⬅ Prev</button>` +
+      `<span>Pagina ${showPage} / ${totalPagini} — episoadele ${startIdx + 1}-${Math.min(total, startIdx + EPISOADE_PER_PAGE)} din ${total}</span>` +
+      `<button id="showNext" tabindex="0" ${showPage >= totalPagini ? 'disabled style="opacity:.4;"' : ''}>Next ➡</button>` +
+      `<button class="ghost" id="showLast" tabindex="0" ${showPage >= totalPagini ? 'disabled style="opacity:.4;"' : ''}>Ultima »</button>`;
+    cont.appendChild(nav);
+    const bind = (id, fn) => { const b = document.getElementById(id); if (b) b.onclick = fn; };
+    bind('showFirst', () => { if (showPage > 1) renderShowPage(1); });
+    bind('showPrev', () => { if (showPage > 1) renderShowPage(showPage - 1); });
+    bind('showNext', () => { if (showPage < totalPagini) renderShowPage(showPage + 1); });
+    bind('showLast', () => { if (showPage < totalPagini) renderShowPage(totalPagini); });
+  }
+
+  bindAutoplayEls();
+  if (!keepScroll) {
+    // schimbare de pagina facuta de utilizator: focus pe primul episod al paginii noi,
+    // ca navigarea cu telecomanda sa continue de acolo
+    const primul = cont.querySelector('.episode');
+    scrollToListStart();
+    if (primul) setFocus(primul);
+  } else if (focusInList) {
+    // pagina s-a schimbat singura in timp ce utilizatorul naviga lista: nu pierdem focusul
+    const el = (focusedEp && cont.querySelector('[data-ep-id="' + focusedEp + '"]')) || cont.querySelector('.episode');
+    if (el) setFocus(el);
+  }
+}
+
+/* ===================== AUTOPLAY: urmatorul videoclip (YouTube) =====================
+   Trecerea la urmatorul videoclip YouTube foloseste DOUA mecanisme, ca sa functioneze
+   si daca WebView-ul aplicatiei nu livreaza mesajele iframe-ului YouTube:
+   1) parametrul playlist=<id-uri> in URL-ul YouTube -> playerul YouTube trece SINGUR,
+      fara JavaScript, la urmatorul videoclip YouTube din lista afisata;
+   2) mesajele playerului (postMessage: onStateChange / infoDelivery) -> pagina isi
+      sincronizeaza lista (toast "Autoplay", marcaj "Vizionat", indexul curent).
+   Butonul "AUTOPLAY: PORNIT/OPRIT" opreste mecanismul 2 si trecerea fortata. */
+let AUTOPLAY_YOUTUBE = true;     // porneste automat urmatorul videoclip YouTube
+let autoplayList = [];           // [{url, el, epId, nume}] in ordinea afisata
+let autoplayIndex = -1;          // indexul videoclipului care ruleaza acum
+let autoplayLock = 0;            // anti-declansare dubla la acelasi final
+let autoplayOnAdvance = null;    // callback (ex: reimprospatare badge "Vizionat")
+let ytHandshakeTimer = null;     // mesajul de "listening" catre iframe-ul YouTube
+let ytIframe = null;             // iframe-ul YouTube curent
+let ytCurrentVideoId = '';       // id-ul videoclipului YouTube care ruleaza acum
+let ytMsgCount = 0;              // diagnostic: cate mesaje a trimis playerul YouTube
+let ytLastState = null;          // ultima stare raportata de player (1 = reda)
+let ytSawPlaying = false;        // playerul a inceput efectiv redarea acestui videoclip
+let ytMaxTime = 0;               // cel mai mare currentTime raportat pentru videoclipul curent
+let ytEndTimer = null;           // verificare dupa "terminat": a trecut playerul singur?
+let ytWatchTimer = null;         // verificare "a pornit redarea?" dupa trecerea automata
+let ytMuteRetry = false;         // o singura reincercare cu sunet oprit
+let ytStatusText = '';
+let ytCapTimer = null;           // reaplicarea "subtitrari oprite" (modulul captions se incarca tarziu)
+let ytCapSends = 0;              // diagnostic: cate comenzi "subtitrari oprite" s-au trimis
+
+function isYouTubeUrl(url) {
+  return !!url && /(?:youtube\.com|youtube-nocookie\.com)\/(?:embed|v)\/?/i.test(String(url).trim());
+}
+
+function ytVideoId(url) {
+  const m = String(url || '').match(/(?:youtube\.com|youtube-nocookie\.com)\/(?:embed|v)\/([A-Za-z0-9_-]{6,})/i);
+  return m ? m[1] : '';
+}
+
+/* Id-urile YouTube de la videoclipul curent pana la finalul listei afisate (maxim
+   YT_PLAYLIST_MAX, ca URL-ul sa rămâna scurt - listele pot avea mii de videoclipuri,
+   iar un URL gigantic nu se mai incarca in WebView).
+   Playerul YouTube le reda singur, pe rand, fara sa depinda de vreun mesaj;
+   cand termina sirul injectat, pagina continua cu urmatorul. */
+const YT_PLAYLIST_MAX = 40;
+function ytPlaylistFor(url) {
+  const id = ytVideoId(url);
+  if (!id || autoplayList.length < 2) return '';
+  const idx = autoplayList.findIndex(it => ytVideoId(it.url) === id);
+  if (idx < 0) return '';
+  const ids = [];
+  for (let i = idx; i < autoplayList.length && ids.length < YT_PLAYLIST_MAX; i++) {
+    const v = ytVideoId(autoplayList[i].url); if (v) ids.push(v);
+  }
+  return ids.length > 1 ? ids.join(',') : '';
+}
+
+function withYouTubeParams(url, autoplay, mute) {
+  const extra = ['enablejsapi=1', 'playsinline=1', 'rel=0', 'cc_load_policy=0'];
+  if (autoplay) extra.push('autoplay=1');
+  if (mute) extra.push('mute=1');
+  let out = String(url).trim();
+  if (!/[?&]playlist=/.test(out)) { const pl = ytPlaylistFor(out); if (pl) extra.push('playlist=' + pl); }
+  const missing = extra.filter(p => !new RegExp('[?&]' + p.split('=')[0] + '=').test(out));
+  if (!missing.length) return out;
+  return out + (out.includes('?') ? '&' : '?') + missing.join('&');
+}
+
+function stopYtHandshake() {
+  if (ytHandshakeTimer) { clearInterval(ytHandshakeTimer); ytHandshakeTimer = null; }
+}
+
+// Fara mesajul asta, iframe-ul YouTube nu trimite niciun eveniment catre pagina.
+function startYtHandshake(iframe) {
+  stopYtHandshake();
+  if (!iframe) return;
+  const ping = () => { try { iframe.contentWindow.postMessage('{"event":"listening","id":"romy-yt","channel":"widget"}', '*'); } catch (_) {} };
+  iframe.addEventListener('load', ping);
+  ping();
+  let ticks = 0;
+  ytHandshakeTimer = setInterval(() => {
+    ticks++; ping();
+    if (ticks === 40) { clearInterval(ytHandshakeTimer); ytHandshakeTimer = setInterval(ping, 4000); }
+  }, 250);
+}
+
+function ytCommand(iframe, func, args) {
+  if (!iframe) return;
+  try { iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*'); } catch (_) {}
+}
+
+/* Subtitrarea pornea singura: playerul restaureaza preferinta de captions la fiecare
+   videoclip. Comanda se trimite dupa ce playerul e gata si se reaplica periodic
+   (modulul captions se initializeaza asincron). Nu scoatem modulul din UI, doar
+   golim pista activa, ca utilizatorul sa poata porni subtitrarea manual daca vrea. */
+function ytDisableCaptions(iframe, restart) {
+  if (!iframe) return;
+  const send = () => {
+    ytCommand(iframe, 'setOption', ['captions', 'track', {}]);
+    ytCommand(iframe, 'setOption', ['cc', 'track', {}]);
+    ytCapSends++;
+  };
+  send();
+  if (restart !== true) return;
+  if (ytCapTimer) { clearInterval(ytCapTimer); ytCapTimer = null; }
+  let ticks = 0;
+  ytCapTimer = setInterval(() => {
+    ticks++;
+    if (ytIframe !== iframe || ticks > 8) { clearInterval(ytCapTimer); ytCapTimer = null; return; }
+    send();
+  }, 2000);
+}
+
+function createPlayerIframe(url, autoplayNext, forceMute) {
+  const iframe = document.createElement('iframe');
+  iframe.tabIndex = 0;
+  injectFullscreenAttributes(iframe);
+  iframe.title = 'Player video';
+  iframe.referrerPolicy = 'origin';
+  const clean = (url || '').trim();
+  const yt = isYouTubeUrl(clean);
+  iframe.dataset.src = clean;
+  iframe.src = yt ? withYouTubeParams(clean, autoplayNext === true, forceMute === true) : clean;
+  if (ytWatchTimer) { clearTimeout(ytWatchTimer); ytWatchTimer = null; }
+  if (yt) {
+    ytIframe = iframe;
+    ytCurrentVideoId = ytVideoId(clean);
+    ytLastState = null;
+    ytSawPlaying = false;
+    ytMaxTime = 0;
+    startYtHandshake(iframe);
+    ytDisableCaptions(iframe, true);
+    if (autoplayNext === true) armYtWatchdog(iframe);
+  } else {
+    stopYtHandshake();
+  }
+  return iframe;
+}
+
+/* Dupa o trecere automata: daca playerul a raspuns (primim mesaje) dar nu reda
+   nimic dupa ~9s, probabil aplicatia blocheaza redarea fara atingere -> reincercam
+   o data cu sunetul oprit (redarea cu sunet oprit e permisa de obicei). */
+function armYtWatchdog(iframe) {
+  const startCount = ytMsgCount;
+  ytWatchTimer = setTimeout(() => {
+    ytWatchTimer = null;
+    if (ytIframe !== iframe) return;                 // s-a incarcat alt videoclip intre timp
+    if (ytSawPlaying || ytMaxTime > 0.5) return;     // reda deja (chiar daca acum buffereaza)
+    if (ytMsgCount <= startCount) return;            // nu primim mesaje -> nu stim nimic
+    retryMutedAutoplay();
+  }, 9000);
+}
+
+function retryMutedAutoplay() {
+  if (ytMuteRetry) return;
+  const item = autoplayList[autoplayIndex];
+  if (!item || !isYouTubeUrl(item.url)) return;
+  ytMuteRetry = true;
+  const f = createPlayerIframe(item.url, true, true);
+  const old = player.querySelector('iframe');
+  if (old && old !== f) old.remove();
+  player.insertBefore(f, player.firstChild);
+  scrollToPlayer();
+  showAutoplayToast('redare automată blocată de aplicație — încerc cu sunet oprit');
+  setTimeout(() => {
+    const cur = player.querySelector('iframe');
+    ytCommand(cur, 'unMute');
+    ytCommand(cur, 'setVolume', [100]);
+  }, 3000);
+}
+
+function registerAutoplayList(items, onAdvance) {
+  autoplayList = (items || []).filter(it => it && it.url)
+    .map(it => ({ url: it.url, el: it.el || null, epId: it.epId || null, nume: it.nume || '' }));
+  autoplayIndex = autoplayList.length ? 0 : -1;   // primul element e deja incarcat in player
+  autoplayOnAdvance = onAdvance || null;
+  ytMsgCount = 0; ytStatusText = ''; ytMuteRetry = false;
+  updateYtStatus();
+}
+
+function resetAutoplay() {
+  autoplayList = []; autoplayIndex = -1; autoplayOnAdvance = null; stopYtHandshake();
+  showAllEpisodes = []; showPage = 1; showContext = null;
+  if (ytEndTimer) { clearTimeout(ytEndTimer); ytEndTimer = null; }
+  if (ytWatchTimer) { clearTimeout(ytWatchTimer); ytWatchTimer = null; }
+  if (ytCapTimer) { clearInterval(ytCapTimer); ytCapTimer = null; }
+  ytIframe = null; ytCurrentVideoId = ''; ytLastState = null;
+}
+
+function showAutoplayToast(text) {
+  let t = document.getElementById('autoplayToast');
+  if (!t) { t = document.createElement('div'); t.id = 'autoplayToast'; document.body.appendChild(t); }
+  t.textContent = '▶ Autoplay: ' + (text || 'urmatorul videoclip');
+  t.classList.add('show');
+  clearTimeout(showAutoplayToast._h);
+  showAutoplayToast._h = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+/* Contor vizibil: cate mesaje a trimis playerul YouTube. Daca rămâne 0 in timp ce
+   ruleaza un videoclip, aplicatia nu livreaza mesajele (trecerea functioneaza oricum). */
+function updateYtStatus() {
+  const areYouTube = autoplayList.some(it => isYouTubeUrl(it.url));
+  if (!areYouTube) {
+    const vechi = document.getElementById('ytStatus');
+    if (vechi) vechi.remove();
+    ytStatusText = '';
+    return;
+  }
+  const txt = 'YT: ' + ytMsgCount + (ytMsgCount ? '' : ' ⚠');
+  if (txt === ytStatusText) return;
+  ytStatusText = txt;
+  let el = document.getElementById('ytStatus');
+  if (!el) {
+    el = document.createElement('span');
+    el.id = 'ytStatus'; el.className = 'yt-status';
+    el.title = 'Mesaje primite de la playerul YouTube. Daca rămâne 0, aplicatia nu livreaza mesajele playerului; trecerea la urmatorul videoclip se face oricum direct de catre player.';
+    const btn = document.getElementById('autoplayToggleBtn');
+    if (btn && btn.parentNode) btn.parentNode.insertBefore(el, btn.nextSibling);
+    else if (typeof details !== 'undefined' && details) details.appendChild(el);
+    else return;
+  }
+  el.textContent = txt;
+}
+
+function markItemWatched(i) {
+  const item = autoplayList[i];
+  if (!item) return;
+  if (item.epId) markAsWatched(item.epId);   // se retine chiar daca episodul e pe alta pagina
+  if (item.el) item.el.classList.add('watched');
+}
+
+function ytItemIndexForVideoId(vid) {
+  if (!vid) return -1;
+  for (let i = 0; i < autoplayList.length; i++) { if (ytVideoId(autoplayList[i].url) === vid) return i; }
+  return -1;
+}
+
+/* Playerul YouTube a trecut singur la alt videoclip din lista -> sincronizam pagina. */
+function syncAutoplayFromPlayer(vid) {
+  const i = ytItemIndexForVideoId(vid);
+  if (i < 0 || i === autoplayIndex) return;
+  markItemWatched(autoplayIndex);
+  autoplayIndex = i;
+  ensureShowPageFor(i);   // playerul a trecut singur pe alta pagina -> o afisam
+  ytCurrentVideoId = vid;
+  ytDisableCaptions(ytIframe, true);
+  markItemWatched(i);
+  if (ytEndTimer) { clearTimeout(ytEndTimer); ytEndTimer = null; }
+  if (typeof autoplayOnAdvance === 'function') { try { autoplayOnAdvance(); } catch (_) {} }
+  if (!AUTOPLAY_YOUTUBE) { ytCommand(ytIframe, 'pauseVideo'); return; }   // autoplay oprit
+  showAutoplayToast(autoplayList[i].nume);
+}
+
+function playAutoplayItem(i, auto) {
+  const item = autoplayList[i];
+  if (!item) return;
+  ensureShowPageFor(i);   // daca episodul e pe pagina urmatoare, o afisam
+  autoplayIndex = i;
+  ytMuteRetry = false;
+  if (ytEndTimer) { clearTimeout(ytEndTimer); ytEndTimer = null; }
+  markItemWatched(i);
+  const existentIframe = player.querySelector('iframe'); if (existentIframe) existentIframe.remove();
+  player.insertBefore(createPlayerIframe(item.url, auto === true), player.firstChild);
+  scrollToPlayer();
+  if (typeof autoplayOnAdvance === 'function') { try { autoplayOnAdvance(); } catch (_) {} }
+  if (auto === true) showAutoplayToast(item.nume);
+}
+
+function autoplayNextVideo() {
+  if (!AUTOPLAY_YOUTUBE || !autoplayList.length) return;
+  let i = autoplayIndex + 1;
+  while (i < autoplayList.length && !isYouTubeUrl(autoplayList[i].url)) i++;   // doar videoclipuri YouTube
+  if (i >= autoplayList.length) return;   // nu mai exista alt videoclip YouTube dupa
+  playAutoplayItem(i, true);
+}
+
+window.__autoplayNext = autoplayNextVideo;
+window.__autoplayToggle = (v) => { AUTOPLAY_YOUTUBE = (v === undefined) ? !AUTOPLAY_YOUTUBE : !!v; return AUTOPLAY_YOUTUBE; };
+window.__autoplayState = () => ({ on: AUTOPLAY_YOUTUBE, index: autoplayIndex, msgs: ytMsgCount, current: ytCurrentVideoId, lastState: ytLastState, capOff: ytCapSends, items: autoplayList.map(i => ({ nume: i.nume, url: i.url })) });
+
+/* Playerul YouTube trimite JSON. Unele versiuni trimit obiecte JS fara ghilimele
+   ({event:"onStateChange",info:0}), deci nu ne bazam doar pe JSON.parse. */
+function parseYtMessage(raw) {
+  const s = String(raw).trim();
+  if (!s) return null;
+  try { const o = JSON.parse(s); if (o && typeof o === 'object') return o; } catch (_) {}
+  const ev = (s.match(/event["']?\s*:\s*["']?([A-Za-z]+)/) || [])[1];
+  if (!ev) return null;
+  const out = { event: ev, channel: 'widget' };
+  const num = (re) => { const m = s.match(re); return m ? Number(m[1]) : null; };
+  const st = num(/playerState["']?\s*:\s*(-?\d+)/);
+  const infoNum = num(/info["']?\s*:\s*(-?\d+)/);
+  if (st !== null) out.info = { playerState: st };
+  else if (infoNum !== null) out.info = infoNum;
+  const vid = (s.match(/video_id["']?\s*:\s*["']([A-Za-z0-9_-]+)["']/) || [])[1];
+  if (vid) { if (!out.info || typeof out.info !== 'object') out.info = {}; out.info.videoData = { video_id: vid }; }
+  return out;
+}
+
+function looksLikeYtEvent(d) {
+  const ev = String((d && d.event) || '');
+  return ev === 'infoDelivery' || ev === 'initialDelivery' || ev === 'onReady' ||
+         ev === 'onStateChange' || ev === 'onError' || ev === 'onPlaybackQualityChange' ||
+         ev === 'onApiChange' || ev === 'onFullscreenChange' || ev === 'alreadyInitialized';
+}
+
+window.addEventListener('message', (e) => {
+  let data = e.data;
+  let fromPlayer = false;
+  try { fromPlayer = !!(ytIframe && e.source && e.source === ytIframe.contentWindow); } catch (_) {}
+  if (typeof data === 'string') { data = parseYtMessage(data); if (!data) return; }
+  if (!data || typeof data !== 'object') return;
+  if (!fromPlayer) {
+    // WebView-ul poate raporta origin gol / file:// / null -> acceptam daca mesajul arata ca un eveniment YouTube
+    const origin = String(e.origin || '');
+    const originOk = origin === '' || origin === 'null' || origin === 'file://' || origin.indexOf('youtube') !== -1;
+    if (!originOk) return;
+    if (!looksLikeYtEvent(data) && data.channel !== 'widget') return;
+  }
+  ytMsgCount++;
+  updateYtStatus();
+  if (data.event === 'onReady' || data.event === 'onStateChange' || data.event === 'apiInfoDelivery') {
+    ytDisableCaptions(ytIframe, data.event === 'apiInfoDelivery');
+  }
+  if (!autoplayList.length) return;
+  const info = (data.info && typeof data.info === 'object') ? data.info : null;
+  if (info && typeof info.playerState === 'number') ytLastState = info.playerState;
+  if (data.event === 'onStateChange' && typeof data.info === 'number') ytLastState = data.info;
+  if (ytLastState === 1) ytSawPlaying = true;
+  if (info && typeof info.currentTime === 'number' && info.currentTime > ytMaxTime) ytMaxTime = info.currentTime;
+
+  // 1) playerul ruleaza deja alt videoclip din lista (a trecut singur mai departe)
+  const vid = info && info.videoData && info.videoData.video_id;
+  if (vid && ytLastState !== 0 && ytLastState !== 2) syncAutoplayFromPlayer(vid);
+
+  // 2) videoclipul curent s-a terminat
+  const ended = (data.event === 'onStateChange' && Number(data.info) === 0) ||
+                (data.event === 'infoDelivery' && Number(info && info.playerState) === 0);
+  if (!ended) return;
+  const now = Date.now();
+  if (now - autoplayLock < 3000) return;
+  autoplayLock = now;
+  markItemWatched(autoplayIndex);
+  const vidAtEnd = ytCurrentVideoId;
+  if (ytEndTimer) clearTimeout(ytEndTimer);
+  ytEndTimer = setTimeout(() => {
+    ytEndTimer = null;
+    if (!AUTOPLAY_YOUTUBE) return;
+    if (ytCurrentVideoId !== vidAtEnd) return;   // playerul a trecut singur mai departe
+    autoplayNextVideo();                          // n-a trecut singur -> incarcam noi urmatorul
+  }, 2500);
+});
+
+function toggleHtmlFullscreen() {
+  if (modalBox.classList.contains('html-fullscreen')) {
+    modalBox.classList.remove('html-fullscreen');
+    setPlayerFlag(false);
+  } else {
+    modalBox.classList.add('html-fullscreen');
+    setPlayerFlag(true);
+    enterPlayerMode();
+  }
+}
+
+function cleanDynamicScripts() {
+  const ids = ['scriptDinamicUniversal', 'traficScriptDinamic', 'plahaScriptDinamic', 'parfumLavandaScriptDinamic', 'camatariiScriptDinamic', 'filmesubtitrateScriptDinamic', 'filmedublateScriptDinamic'];
+  ids.forEach(id => { const s = document.getElementById(id); if(s) s.remove(); });
+  Object.keys(window).forEach(k => { if(k.startsWith('date') && k !== 'dateEpisoade' && k !== 'dateSerialeStraine' && window[k]) window[k] = null; });
+}
+
+function scrollToPlayer() { if (modalBox) modalBox.scrollTop = 0; }
+
+async function getTraficEpisodes() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://documentarys.do.am/APK/trafic/trafic.js?t=' + new Date().getTime();
+    script.onload = () => {
+      if(!window.dateTrafic) { script.remove(); return resolve([]); }
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateTrafic, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let ids = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; ids.push(`trafic-${encodeURIComponent(link.textContent.trim() || href)}`); });
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+async function getPlahaEpisodes() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://documentarys.do.am/APK/plaha/plaha.js?t=' + new Date().getTime();
+    script.onload = () => {
+      if(!window.datePlaha) { script.remove(); return resolve([]); }
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.datePlaha, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let ids = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; ids.push(`plaha-${encodeURIComponent(link.textContent.trim() || href)}`); });
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+async function getParfumLavandaEpisodes() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://documentarys.do.am/APK/parfumlavanda/parfum_lavanda.js?t=' + new Date().getTime();
+    script.onload = () => {
+      if(!window.dateParfumLavanda) { script.remove(); return resolve([]); }
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateParfumLavanda, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let ids = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; ids.push(`lavanda-${encodeURIComponent(link.textContent.trim() || href)}`); });
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+async function getCamatariiEpisodes() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://documentarys.do.am/APK/Camatarii/camatarii.js?t=' + new Date().getTime();
+    script.onload = () => {
+      if(!window.dateCamatarii) { script.remove(); return resolve([]); }
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateCamatarii, 'text/html');
+      const itemsDGE = docVirtual.querySelectorAll('.item');
+      let ids = []; itemsDGE.forEach(item => { const link = item.querySelector('a'); if (!link) return; ids.push(`camatarii-${encodeURIComponent(link.textContent.trim() || link.getAttribute('href'))}`); });
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+async function getLasFierbintiEpisodes() {
+  if (!window.dateEpisoade) return [];
+  const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateEpisoade, 'text/html');
+  const linkuri = docVirtual.querySelectorAll('.item a, a');
+  let ids = []; linkuri.forEach((link, idx) => { let href = link.getAttribute('href'); if(!href || href.includes('filme.html')) return; const epNume = link.textContent.trim() || 'Episod '+(idx+1); ids.push(`lasfierbinti-${encodeURIComponent(epNume || href)}`); });
+  return ids;
+}
+
+async function getScriptBasedShowEpisodes(titlu, scriptUrl) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = scriptUrl + '?t=' + new Date().getTime();
+    script.onload = () => {
+      const cheieGasita = Object.keys(window).find(k => k.toLowerCase().startsWith('date') && k !== 'dateEpisoade' && k !== 'dateSerialeStraine' && window[k]);
+      const sursaDate = cheieGasita ? window[cheieGasita] : null;
+      if (!sursaDate) { script.remove(); return resolve([]); }
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(sursaDate, 'text/html');
+      const itemsDGE = docVirtual.querySelectorAll('.item');
+      let ids = [];
+      if (itemsDGE.length > 0) {
+        itemsDGE.forEach(item => { const link = item.querySelector('a'); if (!link) return; ids.push(`show-${encodeURIComponent(titlu)}-${encodeURIComponent(link.textContent.trim() || link.getAttribute('href'))}`); });
+      } else {
+        const linkuri = docVirtual.querySelectorAll('a');
+        linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; ids.push(`show-${encodeURIComponent(titlu)}-${encodeURIComponent(link.textContent.trim() || href)}`); });
+      }
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+async function getSerialeStraineShowEpisodes() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://documentarys.do.am/APK/seriale/seriale_straine.js?t=' + new Date().getTime();
+    script.onload = () => {
+      if (!window.dateSerialeStraine || !Array.isArray(window.dateSerialeStraine)) { script.remove(); return resolve([]); }
+      let ids = []; window.dateSerialeStraine.forEach((serial) => { ids.push(`sserial-${encodeURIComponent(serial.nume || serial.url)}`); });
+      script.remove(); resolve(ids);
+    };
+    script.onerror = () => { script.remove(); resolve([]); };
+    document.head.appendChild(script);
+  });
+}
+
+function updateCardCompletion(card, epIdsPromise) {
+  if(!card) return;
+  epIdsPromise.then(epListIds => {
+    if(epListIds && epListIds.length > 0 && verifyAllWatched(epListIds)) {
+      if(!card.querySelector('.watched-badge')) card.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+    } else {
+      const bifa = card.querySelector('.watched-badge'); if(bifa) bifa.remove();
+    }
+  });
+}
+
+function openTrafic(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; 
+  episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă ultimele episoade...</div>';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Trafic</h2><p>Un tată obișnuit din București este forțat să pășească în lumea interlopă.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'traficScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/trafic/trafic.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.dateTrafic) return;
+    try {
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateTrafic, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let episoadeValide = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; episoadeValide.push({ nume: link.textContent.trim(), url: href }); });
+      episodes.innerHTML = '';
+      episoadeValide.forEach((ep) => {
+        const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+        const epId = `trafic-${encodeURIComponent(ep.nume || ep.url)}`;
+        if (isWatched(epId)) el.classList.add('watched');
+        el.innerHTML = `<span>${ep.nume}</span>`;
+        el.onclick = () => {
+          markAsWatched(epId); el.classList.add('watched');
+          updateCardCompletion(card, getTraficEpisodes());
+          if (ep.url && ep.url.toLowerCase().includes('filme.txt') && !isDirectVideo(ep.url)) {
+            openGenericUrlPlayer(ep.nume, ep.url, el);
+          } else {
+            const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+            player.insertBefore(createPlayerIframe(ep.url), player.firstChild); scrollToPlayer();
+          }
+        };
+        episodes.appendChild(el);
+      });
+      player.insertBefore(createPlayerIframe(episoadeValide[0].url), player.firstChild);
+    } catch (e) {}
+  };
+  document.head.appendChild(script);
+}
+
+function openPlaha(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex';
+  episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă...</div>';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Plaha</h2><p>Inspirat din realitate.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'plahaScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/plaha/plaha.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.datePlaha) return;
+    try {
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.datePlaha, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let episoadeValide = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; episoadeValide.push({ nume: link.textContent.trim(), url: href }); });
+      episodes.innerHTML = '';
+      episoadeValide.forEach((ep) => {
+        const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+        const epId = `plaha-${encodeURIComponent(ep.nume || ep.url)}`;
+        if (isWatched(epId)) el.classList.add('watched');
+        el.innerHTML = `<span>${ep.nume}</span>`;
+        el.onclick = () => {
+          markAsWatched(epId); el.classList.add('watched');
+          updateCardCompletion(card, getPlahaEpisodes());
+          const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+          player.insertBefore(createPlayerIframe(ep.url), player.firstChild); scrollToPlayer();
+        };
+        episodes.appendChild(el);
+      });
+      player.insertBefore(createPlayerIframe(episoadeValide[0].url), player.firstChild);
+    } catch (e) {}
+  };
+  document.head.appendChild(script);
+}
+
+function openParfumLavanda(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex';
+  episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă...</div>';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Iubire cu parfum de lavandă</h2><p>Episoade Integrale.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'parfumLavandaScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/parfumlavanda/parfum_lavanda.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.dateParfumLavanda) return;
+    try {
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateParfumLavanda, 'text/html');
+      const linkuri = docVirtual.querySelectorAll('.item a, a');
+      let episoadeValide = []; linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; episoadeValide.push({ nume: link.textContent.trim(), url: href }); });
+      episodes.innerHTML = '';
+      episoadeValide.forEach((ep) => {
+        const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+        const epId = `lavanda-${encodeURIComponent(ep.nume || ep.url)}`;
+        if (isWatched(epId)) el.classList.add('watched');
+        el.innerHTML = `<span>${ep.nume}</span>`;
+        el.onclick = () => {
+          markAsWatched(epId); el.classList.add('watched');
+          updateCardCompletion(card, getParfumLavandaEpisodes());
+          const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+          player.insertBefore(createPlayerIframe(ep.url), player.firstChild); scrollToPlayer();
+        };
+        episodes.appendChild(el);
+      });
+      player.insertBefore(createPlayerIframe(episoadeValide[0].url), player.firstChild);
+    } catch (e) {}
+  };
+  document.head.appendChild(script);
+}
+
+function openCamatarii(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex';
+  episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă...</div>';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Cămătarii Sezonul 1</h2><p>Documentar.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'camatariiScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/Camatarii/camatarii.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.dateCamatarii) return;
+    try {
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateCamatarii, 'text/html');
+      const itemsDGE = docVirtual.querySelectorAll('.item');
+      let toateFilmele = [];
+      itemsDGE.forEach(item => {
+        const link = item.querySelector('a'); if (!link) return;
+        toateFilmele.push({ nume: link.textContent.trim(), url: link.getAttribute('href'), imagine: item.querySelector('img')?item.querySelector('img').getAttribute('src'):'', descriere: item.querySelector('em') ? item.querySelector('em').textContent.trim() : '' });
+      });
+      toateFilmele.reverse(); episodes.innerHTML = '';
+      toateFilmele.forEach(film => {
+        const container = document.createElement('div'); container.className = 'film-container';
+        if(film.imagine) container.innerHTML += `<img src="${film.imagine}">`;
+        const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+        const epId = `camatarii-${encodeURIComponent(film.nume || film.url)}`;
+        if (isWatched(epId)) el.classList.add('watched');
+        el.innerHTML = `<span>${film.nume}</span>`;
+        if (film.descriere) el.innerHTML += `<span class="ep-desc">${film.descriere}</span>`;
+        el.onclick = () => {
+          markAsWatched(epId); el.classList.add('watched');
+          updateCardCompletion(card, getCamatariiEpisodes());
+          const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+          player.insertBefore(createPlayerIframe(film.url), player.firstChild); scrollToPlayer();
+        };
+        container.appendChild(el); episodes.appendChild(container);
+      });
+      player.insertBefore(createPlayerIframe(toateFilmele[0].url), player.firstChild);
+    } catch (e) {}
+  };
+  document.head.appendChild(script);
+}
+
+function openScriptBasedShow(titlu, scriptUrl, card, posterUrl) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex';
+  episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă episoadele...</div>';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>${titlu}</h2><p>Vizionare episoade online.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>` +
+    `<button class="btn-autoplay" id="autoplayToggleBtn" tabindex="0">⏭ AUTOPLAY: PORNIT</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  const autoplayBtn = document.getElementById('autoplayToggleBtn');
+  if (autoplayBtn) {
+    const paintAutoplayBtn = () => {
+      autoplayBtn.textContent = AUTOPLAY_YOUTUBE ? '⏭ AUTOPLAY: PORNIT' : '⏭ AUTOPLAY: OPRIT';
+      autoplayBtn.classList.toggle('off', !AUTOPLAY_YOUTUBE);
+    };
+    paintAutoplayBtn();
+    autoplayBtn.onclick = () => { window.__autoplayToggle(); paintAutoplayBtn(); };
+  }
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'scriptDinamicUniversal'; script.async = true;
+  script.src = scriptUrl + '?t=' + new Date().getTime();
+  script.onload = () => {
+    const cheieGasita = Object.keys(window).find(k => k.toLowerCase().startsWith('date') && k !== 'dateEpisoade' && k !== 'dateSerialeStraine' && window[k]);
+    const sursaDate = cheieGasita ? window[cheieGasita] : null;
+    if (!sursaDate) { episodes.innerHTML = '<div style="padding:20px; color:#ef4444;">Eroare structură date.</div>'; return; }
+    try {
+      const parser = new DOMParser(); const docVirtual = parser.parseFromString(sursaDate, 'text/html');
+      const itemsDGE = docVirtual.querySelectorAll('.item');
+      let episoadeValide = [];
+      if (itemsDGE.length > 0) {
+        itemsDGE.forEach(item => {
+          const link = item.querySelector('a'); if (!link) return;
+          episoadeValide.push({ nume: link.textContent.trim(), url: link.getAttribute('href'), imagine: item.querySelector('img') ? item.querySelector('img').getAttribute('src') : (posterUrl || ''), descriere: item.querySelector('em') ? item.querySelector('em').textContent.trim() : '' });
+        });
+        episoadeValide.reverse();
+      } else {
+        const linkuri = docVirtual.querySelectorAll('a');
+        linkuri.forEach(link => { let href = link.getAttribute('href'); if(!href) return; episoadeValide.push({ nume: link.textContent.trim(), url: href, imagine: posterUrl || '', descriere: '' }); });
+      }
+      episodes.innerHTML = '';
+      showContext = {
+        titlu: titlu, scriptUrl: scriptUrl, card: card, posterUrl: posterUrl,
+        onAdvance: () => updateCardCompletion(card, getScriptBasedShowEpisodes(titlu, scriptUrl))
+      };
+      showAllEpisodes = episoadeValide;
+      // lista completa intra in autoplay (nu doar pagina afisata), ca trecerea automata
+      // sa continue si pe pagina urmatoare
+      registerAutoplayList(episoadeValide.map(ep => ({ url: ep.url, epId: showEpisodeId(titlu, ep), nume: ep.nume })), showContext.onAdvance);
+      renderShowPage(1, true);
+      if (episoadeValide[0]) player.insertBefore(createPlayerIframe(episoadeValide[0].url), player.firstChild);
+    } catch (e) {}
+  };
+  document.head.appendChild(script);
+}
+
+function openLasFierbinti(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; episodes.innerHTML = '';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Las Fierbinți</h2><p>Serial de comedie românesc.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = '';
+
+  if (!window.dateEpisoade) return;
+  const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateEpisoade, 'text/html');
+  const linkuri = docVirtual.querySelectorAll('.item a, a');
+  let primulEpisodUrl = null;
+  linkuri.forEach((link, idx) => {
+    let href = link.getAttribute('href'); if(!href || href.includes('filme.html')) return;
+    if (!primulEpisodUrl) primulEpisodUrl = href;
+    const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+    const epNume = link.textContent.trim() || 'Episod '+(idx+1);
+    const epId = `lasfierbinti-${encodeURIComponent(epNume || href)}`;
+    if (isWatched(epId)) el.classList.add('watched');
+    el.innerHTML = `<span>${epNume}</span>`;
+    el.onclick = () => {
+      markAsWatched(epId); el.classList.add('watched');
+      updateCardCompletion(card, getLasFierbintiEpisodes());
+      const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+      player.insertBefore(createPlayerIframe(href), player.firstChild); scrollToPlayer();
+    };
+    episodes.appendChild(el);
+  });
+  if(primulEpisodUrl) player.insertBefore(createPlayerIframe(primulEpisodUrl), player.firstChild);
+}
+
+function openFilmeDublate(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Filme Dublate</h2><p>Colecție filme dublate în limba română.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'filmedublateScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/filmedublate.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.dateFilmeDublate) return;
+    const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateFilmeDublate, 'text/html');
+    const itemsDGE = docVirtual.querySelectorAll('.item');
+    let toate = []; itemsDGE.forEach(item => { const link = item.querySelector('a'); if(!link) return; toate.push({ nume: link.textContent.trim(), url: link.getAttribute('href'), imagine: item.querySelector('img')?item.querySelector('img').getAttribute('src'):'', descriere: item.querySelector('em') ? item.querySelector('em').textContent.trim() : '' }); });
+    toate.reverse(); episodes.innerHTML = '';
+    const autoplayItemsD = [];
+    toate.slice(0, 40).forEach((film, idx) => {
+      const container = document.createElement('div'); container.className = 'film-container';
+      if(film.imagine) container.innerHTML += `<img src="${film.imagine}">`;
+      const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+      const epId = `fdublat-${encodeURIComponent(film.nume || film.url)}`;
+      if (isWatched(epId)) el.classList.add('watched');
+      el.innerHTML = `<span>${film.nume}</span>`;
+      if (film.descriere) el.innerHTML += `<span class="ep-desc">${film.descriere}</span>`;
+      el.onclick = () => {
+        markAsWatched(epId); el.classList.add('watched');
+        if(card && !card.querySelector('.watched-badge')) card.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+        autoplayIndex = idx;
+        const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+        player.insertBefore(createPlayerIframe(film.url), player.firstChild); scrollToPlayer();
+      };
+      autoplayItemsD.push({ url: film.url, el: el, epId: epId, nume: film.nume });
+      container.appendChild(el); episodes.appendChild(container);
+    });
+    registerAutoplayList(autoplayItemsD, null);
+    if(toate[0]) player.insertBefore(createPlayerIframe(toate[0].url), player.firstChild);
+  };
+  document.head.appendChild(script);
+}
+
+function openFilmeSubtitrate(card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>Filme Subtitrate</h2><p>Filme cu subtitrare inclusă.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; cleanDynamicScripts();
+
+  const script = document.createElement('script'); script.id = 'filmesubtitrateScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/filmesubtitrate.js?t=' + new Date().getTime();
+  script.onload = () => {
+    if (!window.dateFilmeSubtitrate) return;
+    const parser = new DOMParser(); const docVirtual = parser.parseFromString(window.dateFilmeSubtitrate, 'text/html');
+    const itemsDGE = docVirtual.querySelectorAll('.item');
+    let toate = []; itemsDGE.forEach(item => { const link = item.querySelector('a'); if(!link) return; toate.push({ nume: link.textContent.trim(), url: link.getAttribute('href'), imagine: item.querySelector('img')?item.querySelector('img').getAttribute('src'):'', descriere: item.querySelector('em') ? item.querySelector('em').textContent.trim() : '' }); });
+    episodes.innerHTML = '';
+    const autoplayItemsS = [];
+    toate.slice(0, 40).forEach((film, idx) => {
+      const container = document.createElement('div'); container.className = 'film-container';
+      if(film.imagine) container.innerHTML += `<img src="${film.imagine}">`;
+      const el = document.createElement('div'); el.className = 'episode'; el.tabIndex = 0;
+      const epId = `fsubtitrat-${encodeURIComponent(film.nume || film.url)}`;
+      if (isWatched(epId)) el.classList.add('watched');
+      el.innerHTML = `<span>${film.nume}</span>`;
+      if (film.descriere) el.innerHTML += `<span class="ep-desc">${film.descriere}</span>`;
+      el.onclick = () => {
+        markAsWatched(epId); el.classList.add('watched');
+        if(card && !card.querySelector('.watched-badge')) card.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+        autoplayIndex = idx;
+        const existentIframe = player.querySelector('iframe'); if(existentIframe) existentIframe.remove();
+        player.insertBefore(createPlayerIframe(film.url), player.firstChild); scrollToPlayer();
+      };
+      autoplayItemsS.push({ url: film.url, el: el, epId: epId, nume: film.nume });
+      container.appendChild(el); episodes.appendChild(container);
+    });
+    registerAutoplayList(autoplayItemsS, null);
+    if(toate[0]) player.insertBefore(createPlayerIframe(toate[0].url), player.firstChild);
+  };
+  document.head.appendChild(script);
+}
+
+// ====== SERIALE STRAINE (ExtraZone) - PAGINARE 15 pe pagina ======
+const SERIALE_STRAINE_PER_PAGE = 15;
+let serialeStrainePage = 1;
+let serialeStraineData = [];
+
+function renderSerialeStrainePage(pagina) {
+  const total = serialeStraineData.length;
+  const totalPagini = Math.max(1, Math.ceil(total / SERIALE_STRAINE_PER_PAGE));
+  if (pagina < 1) pagina = 1;
+  if (pagina > totalPagini) pagina = totalPagini;
+  serialeStrainePage = pagina;
+
+  main.innerHTML = '';
+
+  const backContainer = document.createElement('div');
+  backContainer.style.gridColumn = "1 / -1";
+  backContainer.style.marginBottom = "1rem";
+  backContainer.innerHTML = `<button id="btnBackToExtra" class="ghost" tabindex="0">⬅ Înapoi la ExtraZone</button>
+    <span style="margin-left:.8rem;color:var(--muted);font-size:.85rem;">Pagina ${serialeStrainePage} / ${totalPagini} — ${total} seriale</span>`;
+  main.appendChild(backContainer);
+  document.getElementById('btnBackToExtra').onclick = () => { renderExtraZoneOnly(); };
+
+  const startIdx = (serialeStrainePage - 1) * SERIALE_STRAINE_PER_PAGE;
+  const feliaCurenta = serialeStraineData.slice(startIdx, startIdx + SERIALE_STRAINE_PER_PAGE);
+
+  feliaCurenta.forEach((serial) => {
+    const sCard = document.createElement('div'); sCard.className = 'card serial-special'; sCard.tabIndex = 0;
+    const cardId = `sserial-${encodeURIComponent(serial.nume || serial.url)}`;
+    sCard.innerHTML = `<img src='${serial.imagine || 'https://documentarys.do.am/APK/logo/ChatGPT_Image_Jul_13-2026-08_49_27_PM.jpg'}'><div class='meta'><b>${serial.nume}</b><div class='badge'>${serial.badge || '★ Vezi Serialul'}</div></div>`;
+
+    if(serial.url && serial.url.toLowerCase().endsWith('.js')) {
+      getScriptBasedShowEpisodes(serial.nume, serial.url).then(subEpList => { if(subEpList && subEpList.length > 0 && verifyAllWatched(subEpList)) sCard.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`); });
+    } else {
+      if(isWatched(cardId)) sCard.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+    }
+
+    sCard.onclick = () => {
+      if(serial.url && serial.url.toLowerCase().endsWith('.js')) {
+        openScriptBasedShow(serial.nume, serial.url, sCard, serial.imagine);
+      } else {
+        markAsWatched(cardId); if(!sCard.querySelector('.watched-badge')) sCard.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+        openGenericUrlPlayer(serial.nume, serial.url, sCard);
+      }
+    };
+    main.appendChild(sCard);
+  });
+
+  if (totalPagini > 1) {
+    const navBar = document.createElement('div');
+    navBar.style.gridColumn = "1 / -1";
+    navBar.style.display = 'flex';
+    navBar.style.justifyContent = 'center';
+    navBar.style.alignItems = 'center';
+    navBar.style.gap = '.75rem';
+    navBar.style.padding = '1.5rem 0 2rem';
+    navBar.innerHTML = `
+      <button class="ghost" id="szPrev" tabindex="0" ${serialeStrainePage <= 1 ? 'disabled style="opacity:.4;"' : ''}>⬅ Prev</button>
+      <span style="color:var(--muted);font-size:.9rem;">Pagina ${serialeStrainePage} / ${totalPagini}</span>
+      <button id="szNext" tabindex="0" ${serialeStrainePage >= totalPagini ? 'disabled style="opacity:.4;"' : ''}>Next ➡</button>`;
+    main.appendChild(navBar);
+
+    const bPrev = document.getElementById('szPrev');
+    const bNext = document.getElementById('szNext');
+    if (bPrev) bPrev.onclick = () => { if (serialeStrainePage > 1) { renderSerialeStrainePage(serialeStrainePage - 1); window.scrollTo({top:0,behavior:'smooth'}); } };
+    if (bNext) bNext.onclick = () => { if (serialeStrainePage < totalPagini) { renderSerialeStrainePage(serialeStrainePage + 1); window.scrollTo({top:0,behavior:'smooth'}); } };
+  }
+
+  setTimeout(() => { const firstCardInList = main.querySelector('.card'); if (firstCardInList) setFocus(firstCardInList); }, 60);
+}
+
+function openSerialeStraine(card) {
+  main.innerHTML = "<div style='padding:20px; color:var(--neon); text-align:center;'>Se încarcă lista de seriale străine...</div>";
+  const oldScript = document.getElementById('serialeStraineScriptDinamic'); if(oldScript) oldScript.remove();
+
+  const script = document.createElement('script'); script.id = 'serialeStraineScriptDinamic'; script.async = true;
+  script.src = 'https://documentarys.do.am/APK/seriale/seriale_straine.js?t=' + new Date().getTime();
+  script.onload = () => {
+    serialeStraineData = (window.dateSerialeStraine && Array.isArray(window.dateSerialeStraine)) ? window.dateSerialeStraine : [];
+    serialeStrainePage = 1;
+    renderSerialeStrainePage(1);
+  };
+  script.onerror = () => { main.innerHTML = "<div style='padding:20px; color:#ef4444; text-align:center;'>Nu s-a putut încărca lista de seriale.</div>"; };
+  document.head.appendChild(script);
+}
+
+function isTorrentSource(u) {
+  if (!u) return false;
+  const s = String(u).trim();
+  if (s.startsWith('magnet:')) return true;
+  return /^https?:\/\//i.test(s) && /\.torrent(\?|$)/i.test(s);
+}
+
+function parseTorrentMoviesText(text) {
+  const trimmed = (text || '').trim();
+  if (!trimmed) return [];
+  try {
+    const parsed = JSON.parse(trimmed);
+    if (Array.isArray(parsed)) {
+      return parsed.map(item => ({
+        nume: item.nume || item.title || item.name || 'Torrent Movie',
+        url: item.url || item.magnet || '',
+        imagine: item.imagine || item.img || item.poster || TORRENT_MOVIES_POSTER,
+        descriere: item.descriere || item.description || item.badge || 'Film torrent.',
+        sub: item.sub || item.subtitle || item.subtitrare || item.srt || ''
+      })).filter(item => isTorrentSource(item.url));
+    }
+  } catch (_) {}
+
+  return trimmed.split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'))
+    .map(line => {
+      const parts = line.split('|').map(p => p.trim());
+      if (parts.length === 1 && isTorrentSource(parts[0])) {
+        return { nume: 'Torrent Movie', url: parts[0], imagine: TORRENT_MOVIES_POSTER, descriere: 'Film torrent.', sub: '' };
+      }
+      return {
+        nume: parts[0] || 'Torrent Movie',
+        url: parts[1] || '',
+        imagine: parts[2] || TORRENT_MOVIES_POSTER,
+        descriere: parts[3] || 'Film torrent.',
+        sub: parts[4] || ''
+      };
+    })
+    .filter(item => isTorrentSource(item.url));
+}
+
+async function loadTorrentMovies() {
+  if (torrentMoviesCache) return torrentMoviesCache;
+  try {
+    const response = await fetch(TORRENT_MOVIES_LIST_URL + '?t=' + new Date().getTime(), { cache: 'no-store' });
+    if (!response.ok) throw new Error('Torrent list unavailable');
+    const remoteItems = parseTorrentMoviesText(await response.text());
+    torrentMoviesCache = remoteItems.length ? remoteItems : TORRENT_MOVIES_FALLBACK;
+  } catch (_) {
+    torrentMoviesCache = TORRENT_MOVIES_FALLBACK;
+  }
+  return torrentMoviesCache;
+}
+
+async function getTorrentMoviesEpisodes() {
+  const movies = await loadTorrentMovies();
+  return movies.map(film => `torrent-${encodeURIComponent(film.nume || film.url)}`);
+}
+
+async function openTorrentMovies(card, pagina = 1) {
+  lastCard = card || null;
+  main.innerHTML = "<div style='padding:20px; color:var(--neon); text-align:center;'>Se incarca Filme Torrent...</div>";
+  const movies = await loadTorrentMovies();
+  const perPage = 20;
+  const totalPagini = Math.max(1, Math.ceil(movies.length / perPage));
+  pagina = Math.max(1, Math.min(pagina, totalPagini));
+  const startIdx = (pagina - 1) * perPage;
+  main.innerHTML = '';
+  const backContainer = document.createElement('div');
+  backContainer.style.gridColumn = '1 / -1';
+  backContainer.style.marginBottom = '1rem';
+  backContainer.innerHTML = `<button id="btnBackToExtra" class="ghost" tabindex="0">Inapoi la ExtraZone</button>`;
+  main.appendChild(backContainer);
+  document.getElementById('btnBackToExtra').onclick = () => { renderExtraZoneOnly(); };
+
+  movies.slice(startIdx, startIdx + perPage).forEach(film => {
+    const tCard = document.createElement('div');
+    tCard.className = 'card serial-special';
+    tCard.tabIndex = 0;
+    const cardId = `torrent-${encodeURIComponent(film.nume || film.url)}`;
+    tCard.innerHTML = `<img src='${film.imagine}'><div class='meta'><b>${film.nume}</b><div class='badge'>★ Magnet Torrent</div></div>`;
+    if(isWatched(cardId)) tCard.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+    tCard.onclick = () => {
+      markAsWatched(cardId);
+      if(!tCard.querySelector('.watched-badge')) tCard.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+      openTorrentMovie(film, tCard);
+    };
+    main.appendChild(tCard);
+  });
+const navBar = document.createElement('div');
+navBar.className = 'pagination';
+navBar.style.gridColumn = '1 / -1';
+navBar.style.alignItems = 'center';
+navBar.style.flexWrap = 'wrap';
+
+navBar.innerHTML = `
+  <button class="ghost" id="torrentPrev"
+    ${pagina === 1 ? 'disabled style="opacity:.4;cursor:default;"' : ''}>
+    Înapoi
+  </button>
+
+  <span style="color:var(--muted);font-size:.9rem;">
+    Pagina ${pagina} din ${totalPagini} — ${movies.length} filme
+  </span>
+
+  <button id="torrentNext"
+    ${pagina === totalPagini ? 'disabled style="opacity:.4;cursor:default;"' : ''}>
+    Înainte
+  </button>
+`;
+
+main.appendChild(navBar);
+
+const schimbaPagina = async (nouaPagina) => {
+  await openTorrentMovies(card, nouaPagina);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+navBar.querySelector('#torrentPrev').onclick = () => {
+  if (pagina > 1) schimbaPagina(pagina - 1);
+};
+
+navBar.querySelector('#torrentNext').onclick = () => {
+  if (pagina < totalPagini) schimbaPagina(pagina + 1);
+};
+  setTimeout(() => { const firstCardInList = main.querySelector('.card'); if (firstCardInList) setFocus(firstCardInList); }, 60);
+}
+
+function openTorrentMovie(film, card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; episodes.innerHTML = '';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>${film.nume}</h2><p>${film.descriere || 'Film torrent.'}</p><button class="btn-fs" id="torrentPlayBtn" tabindex="0">Porneste Torrent</button><div id="torrentProgressWrap" style="margin-top:.6rem;display:none;"><div style="background:rgba(148,163,184,.2);border-radius:10px;height:10px;overflow:hidden;"><div id="torrentProgressBar" style="height:100%;width:0%;background:linear-gradient(135deg,var(--violet),var(--neon));transition:width .3s;"></div></div><div id="torrentProgressText" style="text-align:center;color:var(--muted);font-size:.8rem;margin-top:.4rem;">Se pregateste bufferul... 0%</div></div>`;
+  player.innerHTML = `<div style="padding:20px; color:var(--muted); text-align:center;">Se asteapta motorul nativ torrent...</div>`;
+
+  window.onTorrentProgress = (percent) => {
+    const wrap = document.getElementById('torrentProgressWrap');
+    const bar = document.getElementById('torrentProgressBar');
+    const text = document.getElementById('torrentProgressText');
+    if (!wrap || !bar || !text) return;
+    wrap.style.display = 'block';
+    const p = Math.max(0, Math.min(100, parseInt(percent, 10) || 0));
+    bar.style.width = p + '%';
+    text.textContent = p >= 100
+      ? 'Buffer pregatit, se porneste playerul...'
+      : `Se descarca bufferul pentru redare fluenta... ${p}%`;
+  };
+
+  // Heartbeat status while the native engine is still resolving the magnet
+  // (fetching torrent metadata via DHT/trackers) - this can take up to a
+  // minute with no real download percent yet, so we show elapsed time
+  // instead of leaving the UI looking frozen at 0%.
+  window.onTorrentStatus = (message) => {
+    const wrap = document.getElementById('torrentProgressWrap');
+    const bar = document.getElementById('torrentProgressBar');
+    const text = document.getElementById('torrentProgressText');
+    if (!wrap || !bar || !text) return;
+    wrap.style.display = 'block';
+    text.textContent = message || '';
+    if (message && message.indexOf('PROBE') === 0) {
+      player.innerHTML = `<div style="padding:16px;color:#22d3ee;text-align:left;font-family:monospace;font-size:.78rem;word-break:break-word;">${message}</div>`;
+    }
+  };
+
+  // Fatal error from the native torrent engine (metadata fetch failed/timed
+  // out, unsupported torrent, etc.) - show it directly in the player area
+  // instead of relying only on a toast the user might miss.
+  window.onTorrentError = (message) => {
+    player.innerHTML = `<div style="padding:20px; color:#ef4444; text-align:center;">${message || 'Eroare torrent necunoscuta.'}<br><br>Poti incerca din nou apasand butonul de mai sus.</div>`;
+    const text = document.getElementById('torrentProgressText');
+    if (text) text.textContent = 'Eroare - apasa din nou pe Porneste Torrent.';
+  };
+
+  // Diagnostic: check which bridges are present RIGHT NOW (before any click)
+  const bridgeStatusHtml = () => {
+    const hasRomy = !!(window.RomyTorrent && typeof window.RomyTorrent.playMagnet === 'function');
+    const hasAndroid = !!(window.Android && typeof window.Android.playMagnet === 'function');
+    const keysR = window.RomyTorrent ? Object.getOwnPropertyNames(window.RomyTorrent).join(',') : '(undefined)';
+    return `<div style="padding:10px 14px;margin-top:8px;border-radius:8px;background:rgba(15,23,42,.6);color:${(hasRomy||hasAndroid)?'#22c55e':'#f59e0b'};font-size:.75rem;text-align:left;font-family:monospace;">
+      DIAGNOSTIC BRIDGE:<br>
+      &bull; window.RomyTorrent = ${hasRomy ? 'OK (playMagnet gasit)' : (window.RomyTorrent ? 'obiect prezent, dar playMagnet lipseste' : 'UNDEFINED')}<br>
+      &bull; window.Android = ${hasAndroid ? 'OK' : 'lipseste'}<br>
+      &bull; RomyTorrent keys: ${keysR}<br>
+      &bull; UA: ${navigator.userAgent.substring(0, 60)}
+    </div>`;
+  };
+
+  // Show diagnostic immediately when modal opens
+  details.insertAdjacentHTML('beforeend', bridgeStatusHtml());
+
+  const startTorrent = () => {
+    player.innerHTML = `<div style="padding:20px; color:var(--muted); text-align:center;">Se trimite magnetul catre motorul nativ torrent...</div>`;
+    const wrap = document.getElementById('torrentProgressWrap');
+    if (wrap) wrap.style.display = 'block';
+
+    // Bridge missing entirely? Show detailed reason.
+    const hasRomy = window.RomyTorrent && typeof window.RomyTorrent.playMagnet === 'function';
+    const hasAndroid = window.Android && typeof window.Android.playMagnet === 'function';
+    if (!hasRomy && !hasAndroid) {
+      const romyDump = window.RomyTorrent ? ('obiect prezent, chei=' + Object.getOwnPropertyNames(window.RomyTorrent).join(',')) : 'UNDEFINED';
+      player.innerHTML = `<div style="padding:20px; color:#ef4444; text-align:center; font-family:monospace; font-size:.8rem;">
+        BRIDGE LIPSA - motorul nativ torrent nu este injectat in WebView.<br><br>
+        window.RomyTorrent: ${romyDump}<br>
+        window.Android: ${window.Android ? 'prezent' : 'UNDEFINED'}<br><br>
+        Cauza probabila: addJavascriptInterface nu a fost apelat, sau clasa TorrentBridge lipseste din DEX.
+      </div>`;
+      return;
+    }
+
+    // Bridge is present. Preferred path: the new String-returning API
+    // (ping/probeInfo/startTorrent). It cannot throw across the bridge, so any
+    // Java problem comes back as readable text instead of a generic exception.
+    const bridge = hasRomy ? window.RomyTorrent : window.Android;
+    const showDiag = (t) => {
+      player.innerHTML = '<div style="padding:16px;color:#22d3ee;font-family:monospace;font-size:.78rem;white-space:pre-wrap;text-align:left;line-height:1.5;">' + t + '</div>';
+    };
+    if (bridge && typeof bridge.startTorrent === 'function') {
+      let log = '';
+      try { log += (typeof bridge.ping === 'function' ? bridge.ping() : 'ping lipseste') + '\n'; }
+      catch (e) { log += 'ping EXC: ' + ((e && (e.message || e.toString())) || '?') + '\n'; }
+      try { log += (typeof bridge.probeInfo === 'function' ? bridge.probeInfo() : 'probeInfo lipseste') + '\n'; }
+      catch (e) { log += 'probeInfo EXC: ' + ((e && (e.message || e.toString())) || '?') + '\n'; }
+      showDiag(log + 'Se porneste...');
+      try {
+        const subUrl = film.sub || '';
+        if (subUrl && typeof bridge.startTorrentSub === 'function') {
+          log += bridge.startTorrentSub(film.url, film.nume, subUrl) + '\n';
+        } else {
+          log += bridge.startTorrent(film.url, film.nume) + '\n';
+        }
+      }
+      catch (e) { log += 'startTorrent EXC: ' + ((e && (e.message || e.toString())) || '?') + '\n'; }
+      showDiag(log);
+      return;
+    }
+
+    // Legacy path: void playMagnet (older builds).
+    try {
+      if (hasRomy) {
+        window.RomyTorrent.playMagnet(film.url, film.nume);
+        return;
+      }
+      window.Android.playMagnet(film.url, film.nume);
+      return;
+    } catch (err) {
+      const msg = (err && (err.message || err.toString())) || 'exceptie necunoscuta';
+      player.innerHTML = `<div style="padding:20px; color:#ef4444; text-align:center; font-family:monospace; font-size:.8rem;">
+        EROARE la apelul playMagnet:<br><br>
+        ${msg}<br><br>
+        Probabil o clasa lipseste din DEX (NoClassDefFoundError) sau libtorrent4j.so nu s-a incarcat.
+      </div>`;
+    }
+  };
+
+  document.getElementById('torrentPlayBtn').onclick = startTorrent;
+  setTimeout(() => { setFocus(document.getElementById('torrentPlayBtn')); }, 60);
+}
+
+function openGenericUrlPlayer(titlu, url, card) {
+  lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex'; episodes.innerHTML = '';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  details.innerHTML = `<h2>${titlu}</h2><p>Vizionare online.</p><button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML = ''; player.appendChild(createPlayerIframe(url));
+  setTimeout(() => { setFocus(document.getElementById('fsToggleBtn')); }, 60);
+}
+
+function buildPlayer(src,id,s,e){
+  const tv = media==='tv';
+  if(src==='filesun') return `https://filesun.sbs/embed/${media}/${id}${tv?`/${s}/${e}`:''}`;
+  if(src==='videasy') return `https://player.videasy.net/${media}/${id}${tv?`/${s}/${e}`:''}?lang=ro&subtitle=Romanian`;
+  if(src==='superembed') return `https://multiembed.mov/?video_id=${id}&tmdb=1${tv?`&s=${s}&e=${e}`:''}&sub_lang=ro`;
+  if(src==='vidsrcme') return `https://vidsrc.me/embed/${media}?tmdb=${id}${tv?`&season=${s}&episode=${e}`:''}&ds_lang=ro`;
+  if(src==='2embed') return `https://www.2embed.cc/embed/${id}${tv?`?s=${s}&e=${e}&sub_lang=ron`:''}`;
+  if (src === 'stelar') {
+  return tv
+    ? `https://stellar.rip/en/watch/embed/tv/${id}-${s}-${e}`
+    : `https://stellar.rip/en/watch/embed/movie/${id}`;
+}
+}
+
+async function openDetails(i,card){
+  lastCard=card||null; modalOpen=true; window.__modalOpen=true; modal.style.display='flex'; episodes.innerHTML='';
+  modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
+  let {source=DEFAULT_SOURCE,season=1,episode=1}=loadState();
+  if(source==='vidup') source='filesun';
+  if(!SOURCES.some(s=>s.id===source)) source=DEFAULT_SOURCE;
+
+  let dd={};
+  try{ const dr=await fetch(`${BASE}/${media}/${i.id}?api_key=${API}&language=ro-RO`); dd=await dr.json(); }catch(err){ dd={title:i.title||i.name, overview:''}; }
+
+  details.innerHTML=`<h2>${dd.title||dd.name||i.title||i.name||''}</h2><p>${dd.overview||'Descriere indisponibilă.'}</p>`+
+    `<div style="margin-bottom:8px;" id="serverContainer">${SOURCES.map(s=>`<button class='ghost' data-src='${s.id}' tabindex='0'>${s.name}</button>`).join('')}</div>`+
+    `<button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>`;
+
+  document.getElementById('fsToggleBtn').onclick = () => toggleHtmlFullscreen();
+  player.innerHTML='';
+  
+  const updateActiveServerStyle = () => {
+    document.querySelectorAll('[data-src]').forEach(b => {
+      if(b.dataset.src === source) {
+        b.classList.add('active-server');
+      } else {
+        b.classList.remove('active-server');
+      }
+    });
+  };
+
+  const loadPlayer=()=>{
+    player.innerHTML = ''; player.appendChild(createPlayerIframe(buildPlayer(source,i.id,season,episode)));
+    saveState({source,season,episode});
+    updateActiveServerStyle();
+  };
+
+  document.querySelectorAll('[data-src]').forEach(b=>b.onclick=()=>{source=b.dataset.src;loadPlayer()});
+
+  if(media==='tv' && dd.seasons){
+    const sel=document.createElement('select'); sel.tabIndex=0; details.appendChild(sel);
+    dd.seasons.forEach(s=>s.season_number>0&&(sel.innerHTML+=`<option value='${s.season_number}'>Sezonul ${s.season_number}</option>`));
+    sel.value=season;
+    let allEpisodIds = [];
+
+    async function loadSeason(){
+      episodes.innerHTML='';
+      try{
+        const r=await fetch(`${BASE}/tv/${i.id}/season/${season}?api_key=${API}&language=ro-RO`); const d=await r.json();
+        allEpisodIds = (d.episodes||[]).map(e => `tmdb-ep-${i.id}-S${season}-E${e.episode_number}`);
+        (d.episodes||[]).forEach(e=>{
+          const el=document.createElement('div'); el.className='episode'; el.tabIndex=0;
+          const epId = `tmdb-ep-${i.id}-S${season}-E${e.episode_number}`;
+          if (isWatched(epId)) el.classList.add('watched');
+          el.innerHTML=`${e.still_path?`<img src='${IMG+e.still_path}'>`:''}<span>E${e.episode_number} · ${e.name}</span>`;
+          el.onclick=()=>{
+            markAsWatched(epId); el.classList.add('watched');
+            episode=e.episode_number; loadPlayer(); scrollToPlayer();
+            if(verifyAllWatched(allEpisodIds)) {
+              markAsWatched(`tmdb-tv-complet-${i.id}`);
+              if(card && !card.querySelector('.watched-badge')) card.insertAdjacentHTML('afterbegin', `<span class="watched-badge">✔ Vizionat</span>`);
+            }
+          };
+          episodes.appendChild(el);
+        });
+      }catch(err){}
+      episode=1; loadPlayer();
+    }
+    sel.onchange=e=>{season=e.target.value;loadSeason()}; loadSeason();
+  } else loadPlayer();
+
+  setTimeout(()=>{ const currentActiveBtn=modal.querySelector(`[data-src="${source}"]`); setFocus(currentActiveBtn||closeBtn); },60);
+}
+
+function closeModal(){
+  if(!modalOpen)return;
+  if(modalBox.classList.contains('html-fullscreen')) { modalBox.classList.remove('html-fullscreen'); setPlayerFlag(false); exitPlayerMode(); return; }
+  if(playerMode){exitPlayerMode();return;}
+  modalOpen=false; window.__modalOpen=false; modal.style.display='none'; player.innerHTML=''; setPlayerFlag(false); clearFocus(); resetAutoplay();
+  if(lastCard){setFocus(lastCard);} else {const f=main.querySelector('.card');if(f)setFocus(f);}
+}
+window.__closeModal=closeModal;   
+
+let playerMode=false; window.__playerMode=false;
+function setPlayerFlag(on){ try{ const target = on ? '#player-on' : '#player-off'; if(location.hash !== target){ history.replaceState(null,'',location.pathname + location.search + target); } }catch(_){} }
+function enterPlayerMode(){ const iframe=player.querySelector('iframe'); if(!iframe)return; playerMode=true; window.__playerMode=true; player.classList.add('player-mode'); setPlayerFlag(true); clearFocus(); iframe.focus(); }
+function exitPlayerMode(){ if(!playerMode)return; playerMode=false; window.__playerMode=false; player.classList.remove('player-mode'); setPlayerFlag(false); const iframe=player.querySelector('iframe'); if(iframe){setFocus(iframe);} }
+
+function clearFocus(){document.querySelectorAll('.nav-focus').forEach(el=>el.classList.remove('nav-focus'))}
+function setFocus(el){ if(!el)return; clearFocus(); el.classList.add('nav-focus'); try{el.focus({preventScroll:true})}catch(_){el.focus()} el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'}); }
+function getFocused(){return document.querySelector('.nav-focus')}
+
+function focusables(){
+  const scope = modalOpen ? modal : document;
+  const sel='a[href],button,select,input,[tabindex]:not([tabindex="-1"]),.card,.episode';
+  return [...scope.querySelectorAll(sel)].filter(el=>{ if(el.disabled)return false; if(el.offsetParent===null && el!==document.body)return false; return el.getBoundingClientRect().width>0; });
+}
+
+function move(dir){
+  const items=focusables(); if(!items.length)return;
+  let cur=getFocused(); if(!cur||!items.includes(cur)){setFocus(items[0]);return;}
+  const cr=cur.getBoundingClientRect(); const ccx=(cr.left+cr.right)/2, ccy=(cr.top+cr.bottom)/2;
+  let best=null,bestScore=Infinity;
+  items.forEach(el=>{
+    if(el===cur)return; const r=el.getBoundingClientRect(); const cx=(r.left+r.right)/2, cy=(r.top+r.bottom)/2;
+    const dx=cx-ccx, dy=cy-ccy;
+    let valid=false,primary=0,secondary=0;
+    if(dir==='right'){valid=dx>6;primary=dx;secondary=Math.abs(dy);}
+    else if(dir==='left'){valid=dx<-6;primary=-dx;secondary=Math.abs(dy);}
+    else if(dir==='down'){valid=dy>6;primary=dy;secondary=Math.abs(dy);}
+    else if(dir==='up'){valid=dy<-6;primary=-dy;secondary=Math.abs(dx);}
+    if(!valid)return; const score=primary+secondary*2; if(score<bestScore){bestScore=score;best=el;}
+  });
+  if(best)setFocus(best);
+}
+
+function activate(){
+  const el=getFocused(); if(!el)return;
+  if(el.tagName==='IFRAME'){enterPlayerMode();return;} if(el.tagName==='SELECT'||el.tagName==='INPUT'){return;}
+  el.dispatchEvent(new MouseEvent('click', {bubbles:true, cancelable:true, view:window}));
+}
+
+document.addEventListener('keydown',e=>{
+  const k=e.key||'', c=e.keyCode||0;
+  const up=k==='ArrowUp'||c===38; const down=k==='ArrowDown'||c===40; const left=k==='ArrowLeft'||c===37; const right=k==='ArrowRight'||c===39;
+  const ok=k==='Enter'||k===' '||c===13; const back=k==='Escape'||k==='Backspace'||c===27||c===8;
+
+  const activeEl=document.activeElement;
+  if(activeEl && activeEl.tagName==='SELECT'){
+    // Nu interceptam tastele cand un dropdown (Filme/Seriale, categorie, gen) e focusat cu telecomanda.
+    // Lasam browserul sa deschida/navigheze/inchida select-ul nativ (sageti + OK/Enter), altfel
+    // butonul raspundea doar la mouse pentru ca preventDefault() bloca deschiderea nativa.
+    return;
+  }
+  if(activeEl && activeEl.tagName==='INPUT'){
+    // In campul de cautare lasam sageata stanga/dreapta sa miste cursorul in text, nu navigarea.
+    if(left||right) return;
+  }
+
+  if(modalBox.classList.contains('html-fullscreen')) {
+    if(back) { e.preventDefault(); modalBox.classList.remove('html-fullscreen'); setPlayerFlag(false); exitPlayerMode(); return; }
+    return;
+  }
+  if(playerMode){ if(back){e.preventDefault();exitPlayerMode();return;} return; }
+  if(back){ if(modalOpen){e.preventDefault();closeModal();} return; }
+  if(up){e.preventDefault();move('up');} else if(down){e.preventDefault();move('down');}
+  else if(left){e.preventDefault();move('left');} else if(right){e.preventDefault();move('right');}
+  else if(ok){e.preventDefault();activate();}
+},true);
+
+search.addEventListener('input', (e) => { query = e.target.value.trim(); page = 1; load(); });
+btnExtraZone.onclick = () => { isExtraZoneMode = true; fillMenus(); load(); };
+closeBtn.onclick=()=>closeModal(); modal.onclick=e=>{ if(e.target===modal) closeModal(); };
+next.onclick=()=>{page++;load()}; prev.onclick=()=>{if(page>1)page--;load()};
+type.onchange=()=>{ isExtraZoneMode = false; fillMenus(); page=1; query=''; search.value=''; load(); };
+cat.onchange=()=>{page=1;load()}; genre.onchange=()=>{page=1;load()};
+
+fillMenus(); load();
+</script>
+</body>
+</html>
