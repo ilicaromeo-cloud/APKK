@@ -54,7 +54,7 @@ footer{margin-top:20px;text-align:center;font-size:11px;color:#5a6474}
 
 <div id="pl">
   <div id="bar"><div id="ttl"></div><button id="close">&#10005; &Icirc;nchide</button></div>
-  <iframe id="fr" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <iframe id="fr" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="true" referrerpolicy="no-referrer-when-downgrade"></iframe>
   <div id="hint"></div>
   <div id="hot"></div>
 </div>
@@ -122,8 +122,6 @@ function phEl(name){
 }
 
 function enterPlayerFullscreen(){
-  /* Cere fullscreen la fiecare selectie; ramane si afisarea pe tot ecranul prin CSS
-     pe WebView-urile care nu implementeaza Fullscreen API. */
   try {
     if (document.fullscreenElement === pl || document.webkitFullscreenElement === pl) return;
     var request = pl.requestFullscreen || pl.webkitRequestFullscreen || pl.webkitRequestFullScreen;
@@ -138,7 +136,7 @@ function play(c){
   ttl.textContent = c.n;
   var tvtunSlug = TVTUN[c.s];
   if (tvtunSlug){
-    fr.src = 'https://tvtun.com/canal/' + tvtunSlug;
+    fr.src = 'https://tvtun.com/embed/player/' + tvtunSlug;
   } else {
     fr.src = 'https://www.tvonline24.net/ro/embed/' + c.s;
   }
@@ -152,10 +150,6 @@ function play(c){
 
 function closePlayer(){
   stopWatch();
-  try {
-    if (document.fullscreenElement === pl && document.exitFullscreen) document.exitFullscreen();
-    else if (document.webkitFullscreenElement === pl && document.webkitExitFullscreen) document.webkitExitFullscreen();
-  } catch(e){}
   barOn = true;
   bar.style.display = '';
   hint.style.display = '';
