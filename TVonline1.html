@@ -121,6 +121,19 @@ function phEl(name){
   return p;
 }
 
+function enterPlayerFullscreen(){
+  /* Cere fullscreen la fiecare selectie; ramane si afisarea pe tot ecranul prin CSS
+     pe WebView-urile care nu implementeaza Fullscreen API. */
+  try {
+    if (document.fullscreenElement === pl || document.webkitFullscreenElement === pl) return;
+    var request = pl.requestFullscreen || pl.webkitRequestFullscreen || pl.webkitRequestFullScreen;
+    if (request) {
+      var result = request.call(pl);
+      if (result && result.catch) result.catch(function(){});
+    }
+  } catch(e){}
+}
+
 function play(c){
   ttl.textContent = c.n;
   var tvtunSlug = TVTUN[c.s];
@@ -132,12 +145,17 @@ function play(c){
   pl.classList.add('on');
   window.__modalOpen = true;
   showBar();
+  enterPlayerFullscreen();
   try { closeBtn.focus(); } catch(e){}
   try { if (location.hash !== '#player-on') location.hash = 'player-on'; } catch(e){}
 }
 
 function closePlayer(){
   stopWatch();
+  try {
+    if (document.fullscreenElement === pl && document.exitFullscreen) document.exitFullscreen();
+    else if (document.webkitFullscreenElement === pl && document.webkitExitFullscreen) document.webkitExitFullscreen();
+  } catch(e){}
   barOn = true;
   bar.style.display = '';
   hint.style.display = '';
