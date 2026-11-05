@@ -6,56 +6,26 @@
 <meta name="theme-color" content="#0b0e13">
 <title>RDSLive — Categorii TV</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b0e13;color:#f4f7fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{padding:16px}.wrap{max-width:980px;margin:auto}header{display:flex;align-items:center;gap:12px;margin:6px 0 18px}h1{margin:0;color:#34a3ff;font-size:23px}header small{display:block;color:#8793a3;font-size:13px;margin-top:3px}.intro{color:#aeb8c6;font-size:14px;line-height:1.5;margin:0 0 18px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}.cat{min-height:76px;padding:14px;background:#151b25;border:1px solid #263143;border-radius:14px;color:#fff;font-size:15px;font-weight:700;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px}.cat:hover,.cat:focus{outline:none;border-color:#299bff;background:#192536}.ico{width:38px;height:38px;border-radius:11px;background:#1d3550;color:#5db5ff;display:grid;place-items:center;font-size:18px;flex:0 0 auto}.foot{color:#657184;font-size:12px;text-align:center;margin:22px 0 6px}
-#viewer{position:fixed;inset:0;background:#000;z-index:10;display:none}#viewer.open{display:block}#frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}#toolbar{position:absolute;top:0;left:0;right:0;height:52px;z-index:2;display:flex;align-items:center;gap:10px;padding:7px 12px;background:linear-gradient(#000b,transparent);pointer-events:none}#label{font-weight:700;font-size:14px;flex:1;text-shadow:0 1px 4px #000}#close{pointer-events:auto;background:#171d27e8;border:1px solid #ffffff55;border-radius:10px;color:#fff;font-size:14px;padding:8px 13px;cursor:pointer}#close:focus{outline:2px solid #299bff}body.viewing{overflow:hidden}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b0e13;color:#f4f7fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{padding:16px}.wrap{max-width:980px;margin:auto}header{display:flex;align-items:center;gap:12px;margin:6px 0 18px}h1{margin:0;color:#34a3ff;font-size:23px}header small{display:block;color:#8793a3;font-size:13px;margin-top:3px}.intro{color:#aeb8c6;font-size:14px;line-height:1.5;margin:0 0 18px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}.cat{min-height:76px;padding:14px;background:#151b25;border:1px solid #263143;border-radius:14px;color:#fff;font-size:15px;font-weight:700;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;text-decoration:none}.cat:hover,.cat:focus{outline:none;border-color:#299bff;background:#192536}.ico{width:38px;height:38px;border-radius:11px;background:#1d3550;color:#5db5ff;display:grid;place-items:center;font-size:18px;flex:0 0 auto}.foot{color:#657184;font-size:12px;text-align:center;margin:22px 0 6px}
 </style>
 </head>
 <body>
-<main class="wrap" id="home">
+<main class="wrap">
 <header><div><h1>RDSLive TV</h1><small>Canale organizate pe categorii</small></div></header>
-<p class="intro">Alege o categorie. Site-ul RDSLive se deschide pe tot ecranul; apoi selectează canalul dorit din listă.</p>
-<section class="grid" id="grid" aria-label="Categorii TV"></section>
+<p class="intro">Alege o categorie pentru a deschide lista de canale direct pe site-ul RDSLive. Folosește butonul Înapoi al telefonului pentru a reveni aici.</p>
+<section class="grid" aria-label="Categorii TV">
+<a class="cat" href="https://rdslive.net/categorie/tv-copii/"><span class="ico">▣</span><span>Copii</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-diverse/"><span class="ico">✦</span><span>Diverse</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-documentare/"><span class="ico">◉</span><span>Documentare</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-filme/"><span class="ico">▶</span><span>Filme</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-generaliste/"><span class="ico">▤</span><span>Generaliste</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-muzica/"><span class="ico">♫</span><span>Muzică</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-regionale/"><span class="ico">⌖</span><span>Regionale</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-religioase/"><span class="ico">✧</span><span>Religioase</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-sport/"><span class="ico">⚽</span><span>Sport</span></a>
+<a class="cat" href="https://rdslive.net/categorie/tv-stiri/"><span class="ico">▣</span><span>Știri</span></a>
+</section>
 <div class="foot">Sursă: rdslive.net</div>
 </main>
-<div id="viewer" aria-hidden="true">
-  <div id="toolbar"><div id="label">RDSLive</div><button id="close" type="button">✕ Înapoi</button></div>
-  <iframe id="frame" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen="true" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-<script>
-(function(){
-  var categories=[
-    ['Copii','tv-copii','▣'],['Diverse','tv-diverse','✦'],['Documentare','tv-documentare','◉'],['Filme','tv-filme','▶'],['Generaliste','tv-generaliste','▤'],['Muzică','tv-muzica','♫'],['Regionale','tv-regionale','⌖'],['Religioase','tv-religioase','✧'],['Sport','tv-sport','⚽'],['Știri','tv-stiri','▣']
-  ];
-  var grid=document.getElementById('grid'),viewer=document.getElementById('viewer'),frame=document.getElementById('frame'),label=document.getElementById('label'),close=document.getElementById('close');
-  categories.forEach(function(item){
-    var b=document.createElement('button');b.type='button';b.className='cat';
-    b.innerHTML='<span class="ico" aria-hidden="true">'+item[2]+'</span><span>'+item[0]+'</span>';
-    b.onclick=function(){openCategory(item)};grid.appendChild(b);
-  });
-  function requestFullscreen(){
-    try{
-      var el=viewer;
-      var fn=el.requestFullscreen||el.webkitRequestFullscreen||el.webkitRequestFullScreen;
-      if(fn){var p=fn.call(el);if(p&&p.catch)p.catch(function(){});}
-    }catch(e){}
-  }
-  function openCategory(item){
-    viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.classList.add('viewing');
-    label.textContent='RDSLive · '+item[0];
-    frame.src='https://rdslive.net/categorie/'+item[1]+'/';
-    requestFullscreen();
-    try{location.hash='tv'}catch(e){}
-  }
-  function closeViewer(){
-    viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.classList.remove('viewing');
-    frame.src='about:blank';
-    try{if(document.fullscreenElement===viewer&&document.exitFullscreen)document.exitFullscreen();else if(document.webkitFullscreenElement===viewer&&document.webkitExitFullscreen)document.webkitExitFullscreen()}catch(e){}
-    try{if(location.hash==='#tv')history.replaceState(null,'',location.pathname+location.search)}catch(e){}
-  }
-  close.onclick=closeViewer;
-  document.addEventListener('keydown',function(e){if((e.key==='Escape'||e.key==='Backspace'||e.keyCode===4)&&viewer.classList.contains('open')){e.preventDefault();closeViewer()}});
-  window.addEventListener('hashchange',function(){if(location.hash!=='#tv'&&viewer.classList.contains('open'))closeViewer()});
-})();
-</script>
 </body>
 </html>
