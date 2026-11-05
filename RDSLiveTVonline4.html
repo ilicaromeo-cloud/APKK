@@ -2,20 +2,35 @@
 <html lang="ro">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#0b0e13">
 <title>RDSLive — Toate canalele</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#0b0e13;color:#f4f7fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center}.box{max-width:520px}h1{font-size:24px;color:#34a3ff}p{color:#aeb8c6;line-height:1.5}.btn{display:inline-block;margin:10px 5px;padding:13px 20px;border-radius:12px;background:#1687e8;color:white;text-decoration:none;font-weight:700}.alt{background:#202a38;border:1px solid #39495e}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b0e13;color:#f4f7fb;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}.box{width:min(100%,520px)}h1{margin:0 0 12px;color:#1e90ff;font-size:24px}p{margin:0 0 22px;color:#aeb8c6;line-height:1.5}.open{display:block;width:100%;padding:16px 20px;border:1px solid #328fdd;border-radius:13px;background:#1687e8;color:#fff;text-decoration:none;font-size:17px;font-weight:750}.open:focus,.open:hover{outline:none;background:#0875d2}.note{font-size:12px;color:#758195;margin-top:16px}
 </style>
 </head>
 <body>
 <main class="box">
 <h1>RDSLive — Toate canalele TV</h1>
-<p>Apasă butonul pentru a deschide lista completă de canale în browser.</p>
-<a class="btn" href="intent://rdslive.net/canale-tv-gratis/#Intent;scheme=https;end">Deschide în browser</a>
-<p>Dacă butonul nu deschide browserul, folosește linkul direct:</p>
-<a class="btn alt" href="https://rdslive.net/canale-tv-gratis/" target="_blank" rel="noopener">Deschide lista RDSLive</a>
+<p>Apasă pentru a deschide lista completă în WebView. Integrarea fullscreen folosește semnalul <code>#player-on</code> recunoscut de aplicație.</p>
+<a class="open" id="open" href="https://rdslive.net/canale-tv-gratis/#player-on">Deschide toate canalele</a>
+<div class="note">Pentru revenire folosește butonul Înapoi al aplicației.</div>
 </main>
+<script>
+(function(){
+  var link=document.getElementById('open');
+  link.addEventListener('click',function(e){
+    e.preventDefault();
+    try{if(location.hash!=='#player-on')location.hash='player-on'}catch(_){}
+    var target='https://rdslive.net/canale-tv-gratis/#player-on';
+    setTimeout(function(){location.href=target},80);
+  });
+  window.__closeModal=function(){
+    try{if(location.hash==='#player-on')location.hash='player-off'}catch(_){}
+    return true;
+  };
+})();
+</script>
 </body>
 </html>
