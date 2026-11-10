@@ -4,7 +4,7 @@ window.dateExtraZoneItems = [
     id: 'ez-lasfierbintinou', 
     title: 'Las Fierbinti Sezonul 30', 
     badge: '★ Episoade in Reluare', 
-    img: 'https://www.themoviedb.org/t/p/w600_and_h900_face/qZJlqFWGm46PxSkPLteOeV6PIbT.jpg'', // Pune link-ul coperții tale
+    img: 'https://www.themoviedb.org/t/p/w600_and_h900_face/qZJlqFWGm46PxSkPLteOeV6PIbT.jpg', // Pune link-ul coperții tale
     jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/lasfierbintinou.js' 
   },
   { 
