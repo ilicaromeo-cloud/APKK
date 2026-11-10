@@ -38,8 +38,8 @@ window.dateExtraZoneItems = [
   { 
     id: 'ez-filmeanimate', 
     title: 'Filme Animate', 
-    badge: '★ https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
-    img: 'https://romyiptv.do.am/APK/logo/filmeanimate.jpg', 
+    badge: '★ Filme Animate', 
+    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg'', 
     jsUrl: 'https://romyiptv.do.am/APK/filmeanimate.js' 
   },
   { 
