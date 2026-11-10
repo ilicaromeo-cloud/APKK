@@ -11,7 +11,7 @@ window.dateExtraZoneItems = [
     id: 'ez-trafic', 
     title: 'Trafic', 
     badge: '★ Episoade Integrale', 
-    img: 'https://romyiptv.do.am/APK/logo/trafic.webp', 
+    img: 'https://static.cinemagia.ro/img/db/movie/33/28/051/trafic-472995l.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/trafic/trafic.js' 
   },
   { 
@@ -38,7 +38,7 @@ window.dateExtraZoneItems = [
   { 
     id: 'ez-filmeanimate', 
     title: 'Filme Animate', 
-    badge: '★ Filme Animate Dublate In Limba Română', 
+    badge: '★ https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
     img: 'https://romyiptv.do.am/APK/logo/filmeanimate.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmeanimate.js' 
   },
@@ -46,21 +46,21 @@ window.dateExtraZoneItems = [
     id: 'ez-filmedublate', 
     title: 'Filme Dublate', 
     badge: '★ Limba Română', 
-    img: 'https://romyiptv.do.am/APK/logo/filmedublate.jpg', 
+    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmedublate.js' 
   },
   { 
     id: 'ez-filmesubtitrate', 
     title: 'Filme Subtitrate', 
     badge: '★ Subtitrat în Română', 
-    img: 'https://romyiptv.do.am/APK/logo/ChatGPT_Image_Jul_13-2026-08_49_27_PM.jpg', 
+    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmesubtitrate.js' 
   },
   { 
     id: 'ez-serialestraine', 
     title: 'Seriale Straine', 
     badge: '★ Subtitrate în Română', 
-    img: 'https://romyiptv.do.am/APK/logo/Jul_14-2026-06_09_41_PM.jpg', 
+    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
     special: 'seriale_straine' // Pentru a apela funcția ta specială existentă
   },
   { 
@@ -69,40 +69,5 @@ window.dateExtraZoneItems = [
     badge: '★ Filme verticale scurte în română — catalog curat cu subtitrare și calitate HD.', 
     img: 'https://cdn-bgp.bluestacks.com/BGP/us/gametiles_com.newleaf.app.android.victor.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/ExtraZone/reelshort.js' 
-  },
-  { 
-    id: 'ez-manele', 
-    title: 'Manele', 
-    badge: '★ Manele Youtube', 
-    img: 'https://romyiptv.do.am/APK/logo/Golden_Manele_Playlist_Night.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://romyiptv.do.am/APK/youtube/manele.js' 
-  },
-  { 
-    id: 'ez-romaneasca', 
-    title: 'Romanesti', 
-    badge: '★ Romanesti Youtube', 
-    img: 'https://romyiptv.do.am/APK/logo/romanesti_youtube_music_showcase.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://romyiptv.do.am/APK/youtube/romaneasca.js' 
-  },
-  { 
-    id: 'ez-clubbing', 
-    title: 'Clubbing', 
-    badge: '★ Clubbing Youtube', 
-    img: 'https://romyiptv.do.am/APK/logo/RomyIPTV_Clubbing_Nightlife_Poster.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://romyiptv.do.am/APK/youtube/clubbing.js' 
-  },
-  { 
-    id: 'ez-petrecere', 
-    title: 'Petrecere', 
-    badge: '★ Petrecere Youtube', 
-    img: 'https://romyiptv.do.am/APK/logo/RomyIPTV_Petrecere_Party_Playlist.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://romyiptv.do.am/APK/youtube/petrecere.js' 
-  },
-  { 
-    id: 'ez-straine', 
-    title: 'Straine', 
-    badge: '★ Straine Youtube', 
-    img: 'https://romyiptv.do.am/APK/logo/STRAINE-International_Party_Beats.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://romyiptv.do.am/APK/youtube/straine.js' 
   }
 ];
