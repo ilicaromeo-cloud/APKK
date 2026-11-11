@@ -92,6 +92,27 @@ window.dateInsulaIubiriiReuniuni = `
 </div>
 
 
+<div class="item">
+  <img src="https://veziaici.net/wp-content/uploads/2026/09/las-fierbinti-sezonul-30-online-in-reluare-complet-din-2026-768x320.webp" alt="Las Fierbinti Sezonul 30 Episodul 14 de pe 2 Noiembrie 2026" />
+  <a href="https://vkvideo.ru/video_ext.php?oid=-234899898&id=456239438&hash=17147cbbdc97ea27&hd=4">Las Fierbinti Sezonul 30 Episodul 14 de pe 2 Noiembrie 2026</a>
+  <em>Distribuția păstrează nucleul care a devenit deja familiar telespectatorilor. Mihai Bobonete revine în rolul lui Bobiță, Adrian Văncică îl interpretează din nou pe Celentano, Constantin Diță este Giani, Cuzin Toma revine ca Firicel, iar Anca Dumitra o readuce pe ecran pe Gianina. Din distribuție fac parte și Mihai Rait, în rolul lui Dorel, Gheorghe Ifrim, Mirela Oprișor și alte personaje cunoscute ale serialului.</em>
+</div>
+
+
+<div class="item">
+  <img src="https://veziaici.net/wp-content/uploads/2026/09/las-fierbinti-sezonul-30-online-in-reluare-complet-din-2026-768x320.webp" alt="Las Fierbinti Sezonul 30 Episodul 15 Online 5 Noiembrie 2026" />
+  <a href="https://vkvideo.ru/video_ext.php?oid=-234961466&id=456239233&hash=456239233&hd=4">Las Fierbinti Sezonul 30 Episodul 15 Online 5 Noiembrie 2026</a>
+  <em>Distribuția păstrează nucleul care a devenit deja familiar telespectatorilor. Mihai Bobonete revine în rolul lui Bobiță, Adrian Văncică îl interpretează din nou pe Celentano, Constantin Diță este Giani, Cuzin Toma revine ca Firicel, iar Anca Dumitra o readuce pe ecran pe Gianina. Din distribuție fac parte și Mihai Rait, în rolul lui Dorel, Gheorghe Ifrim, Mirela Oprișor și alte personaje cunoscute ale serialului.</em>
+</div>>
+
+
+<div class="item">
+  <img src="https://veziaici.net/wp-content/uploads/2026/09/las-fierbinti-sezonul-30-online-in-reluare-complet-din-2026-768x320.webp" alt="Las Fierbinti Sezonul 30 Episodul 16 Integral 9 Noiembrie" />
+  <a href="https://vkvideo.ru/video_ext.php?oid=-234899898&id=456239480&hash=101e320b38d7f6d9&hd=4">Las Fierbinti Sezonul 30 Episodul 16 Integral 9 Noiembrie</a>
+  <em>Distribuția păstrează nucleul care a devenit deja familiar telespectatorilor. Mihai Bobonete revine în rolul lui Bobiță, Adrian Văncică îl interpretează din nou pe Celentano, Constantin Diță este Giani, Cuzin Toma revine ca Firicel, iar Anca Dumitra o readuce pe ecran pe Gianina. Din distribuție fac parte și Mihai Rait, în rolul lui Dorel, Gheorghe Ifrim, Mirela Oprișor și alte personaje cunoscute ale serialului.</em>
+</div>
+
+
 
 
 
