@@ -202,7 +202,7 @@ button.ghost.active-server {
 .show-pager span { color: var(--muted); font-size: .85rem; text-align: center; }
 .show-pager button:disabled { cursor: default; }
 </style>
-<script src="las_fierbinti.js" type="2dbdd55aa0452c708fa6b0c0-text/javascript"></script>
+<script src="las_fierbinti.js"></script>
 </head>
 <body>
 <header>
@@ -240,7 +240,7 @@ button.ghost.active-server {
   </div>
 </div>
 
-<script type="2dbdd55aa0452c708fa6b0c0-text/javascript">
+<script>
 const API='8ad3c21a92a64da832c559d58cc63ab4';
 const BASE='https://api.themoviedb.org/3';
 const IMG='https://image.tmdb.org/t/p/w500';
@@ -362,20 +362,11 @@ async function load(){
 // niciodată în filme.html.
 const EXTRAZONE_LIST_URL = 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/ExtraZone.js';
 let extraZoneItemsCache = null;
-// Lista se încarcă prin fetch+eval ca să putem repara o greșeală tipică de ghilimele (ex: img: '...jpg'',)
-// care altfel face întregul fișier invalid și rămâne doar cardul Filme Torrent.
-function parseExtraZoneSource(code) {
-  const run = (src) => { const w = {}; new Function('window', src)(w); return Array.isArray(w.dateExtraZoneItems) ? w.dateExtraZoneItems : null; };
-  try { return run(code); } catch (e) {
-    console.warn('ExtraZone.js: eroare de sintaxă, încerc reparația automată:', e.message);
-    return run(code.replace(/(\.(?:jpe?g|png|webp|gif))''/gi, "$1'"));
-  }
-}
 
 const TORRENT_MOVIES_POSTER = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22750%22 viewBox=%220 0 500 750%22%3E%3Crect width=%22500%22 height=%22750%22 fill=%22%23020712%22/%3E%3Crect x=%2234%22 y=%2234%22 width=%22432%22 height=%22682%22 rx=%2234%22 fill=%22%23030a18%22 stroke=%22%2322d3ee%22 stroke-width=%225%22/%3E%3Ccircle cx=%22250%22 cy=%22235%22 r=%22118%22 fill=%22none%22 stroke=%22%2322d3ee%22 stroke-width=%2220%22/%3E%3Cpath d=%22M224 158v154l112-77z%22 fill=%22%23ffffff%22/%3E%3Ctext x=%22250%22 y=%22462%22 text-anchor=%22middle%22 font-family=%22Arial Black,Arial%22 font-size=%2248%22 fill=%22%23ffffff%22%3ETorrent%3C/text%3E%3Ctext x=%22250%22 y=%22526%22 text-anchor=%22middle%22 font-family=%22Arial Black,Arial%22 font-size=%2254%22 fill=%22%2322d3ee%22%3EMovies%3C/text%3E%3Ctext x=%22250%22 y=%22590%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%2394a3b8%22%3EMagnet Player%3C/text%3E%3C/svg%3E";
-const TORRENT_MOVIES_LIST_URL = 'https://documentarys.do.am/APK/filmetorrent.txt';
+const TORRENT_MOVIES_LIST_URL = 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/filmetorrent.txt';
 const SINTEL_MAGNET = "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent";
-const TORRENT_MOVIES_LOGO = 'https://documentarys.do.am/APK/logo/Torrent.jpg';
+const TORRENT_MOVIES_LOGO = 'https://cdn.aptoide.com/imgs/8/5/1/851b7aab103ae7e8aa8e086c3d851e36_icon.png';
 const TORRENT_MOVIES_CARD = { id: 'ez-torrentmovies', title: 'Filme Torrent', badge: '★ Filme Magnet', img: TORRENT_MOVIES_LOGO };
 const TORRENT_MOVIES_FALLBACK = [
   { nume: 'Sintel', url: SINTEL_MAGNET, imagine: TORRENT_MOVIES_POSTER, descriere: 'Film de proba legal pentru playerul torrent.' }
@@ -398,17 +389,18 @@ const EXTRAZONE_SPECIAL_HANDLERS = {
 
 function loadExtraZoneList() {
   if (extraZoneItemsCache) return Promise.resolve(extraZoneItemsCache);
-  return fetch(EXTRAZONE_LIST_URL + '?t=' + Date.now(), { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-    .then(code => {
-      const remoteItems = parseExtraZoneSource(code) || [];
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = EXTRAZONE_LIST_URL + '?t=' + new Date().getTime();
+    script.onload = () => {
+      const remoteItems = Array.isArray(window.dateExtraZoneItems) ? window.dateExtraZoneItems : [];
       extraZoneItemsCache = [TORRENT_MOVIES_CARD, ...remoteItems.filter(item => item && item.id !== TORRENT_MOVIES_CARD.id)];
-      return extraZoneItemsCache;
-    })
-    .catch(err => {
-      console.warn('ExtraZone: nu s-a putut încărca lista:', err && err.message);
-      return [TORRENT_MOVIES_CARD];
-    });
+      script.remove();
+      resolve(extraZoneItemsCache);
+    };
+    script.onerror = () => { script.remove(); extraZoneItemsCache = [TORRENT_MOVIES_CARD]; resolve(extraZoneItemsCache); };
+    document.head.appendChild(script);
+  });
 }
 
 function resolveExtraZoneItem(raw) {
@@ -1942,5 +1934,5 @@ cat.onchange=()=>{page=1;load()}; genre.onchange=()=>{page=1;load()};
 
 fillMenus(); load();
 </script>
-<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="2dbdd55aa0452c708fa6b0c0-|49" defer></script></body>
+</body>
 </html>
