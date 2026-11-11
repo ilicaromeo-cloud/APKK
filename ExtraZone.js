@@ -11,7 +11,7 @@ window.dateExtraZoneItems = [
     id: 'ez-trafic', 
     title: 'Trafic', 
     badge: '★ Episoade Integrale', 
-    img: 'https://static.cinemagia.ro/img/db/movie/33/28/051/trafic-472995l.jpg', 
+    img: 'https://romyiptv.do.am/APK/logo/trafic.webp', 
     jsUrl: 'https://romyiptv.do.am/APK/trafic/trafic.js' 
   },
   { 
@@ -38,29 +38,29 @@ window.dateExtraZoneItems = [
   { 
     id: 'ez-filmeanimate', 
     title: 'Filme Animate', 
-    badge: '★ Filme Animate', 
-    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg'', 
+    badge: '★ Filme Animate Dublate In Limba Română', 
+    img: 'https://romyiptv.do.am/APK/logo/filmeanimate.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmeanimate.js' 
   },
   { 
     id: 'ez-filmedublate', 
     title: 'Filme Dublate', 
     badge: '★ Limba Română', 
-    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
+    img: 'https://romyiptv.do.am/APK/logo/filmedublate.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmedublate.js' 
   },
   { 
     id: 'ez-filmesubtitrate', 
     title: 'Filme Subtitrate', 
     badge: '★ Subtitrat în Română', 
-    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
+    img: 'https://romyiptv.do.am/APK/logo/ChatGPT_Image_Jul_13-2026-08_49_27_PM.jpg', 
     jsUrl: 'https://romyiptv.do.am/APK/filmesubtitrate.js' 
   },
   { 
     id: 'ez-serialestraine', 
     title: 'Seriale Straine', 
     badge: '★ Subtitrate în Română', 
-    img: 'https://static.rfstat.com/video_thumbnails/d7a6019b2ef808a8fcee82758c4a9c05/thumbnail.jpg', 
+    img: 'https://romyiptv.do.am/APK/logo/Jul_14-2026-06_09_41_PM.jpg', 
     special: 'seriale_straine' // Pentru a apela funcția ta specială existentă
   },
   { 
