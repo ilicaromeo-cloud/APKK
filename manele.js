@@ -13641,4 +13641,63 @@ window.dateInsulaIubiriiReuniuni = `
     <a href="https://www.youtube.com/embed/iGi_UK0Q64o">Petruta Sunt La Inaltime</a>
     <em>Manele 2026</em>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="item">
+    <img src="https://i.ytimg.com/vi/5W4sUieNW88/hqdefault.jpg" alt="Nicușor Duță-Sase nopti de fericire" />
+    <a href="https://www.youtube.com/embed/5W4sUieNW88">Nicușor Duță-Sase nopti de fericire</a>
+    <em>Manele 2026</em>
+  </div>
+
+<div class="item">
+    <img src="https://i.ytimg.com/vi/zCjXhcEhgTg/hqdefault.jpg" alt="Nicușor Duță-Respectul nu se cumpara" />
+    <a href="https://www.youtube.com/embed/zCjXhcEhgTg">Nicușor Duță-Respectul nu se cumpara</a>
+    <em>Manele 2026</em>
+  </div>
+
+<div class="item">
+    <img src="https://i.ytimg.com/vi/SA-TACtHzlQ/hqdefault.jpg" alt="Nicusor Duta-Am trecut prin toate" />
+    <a href="https://www.youtube.com/embed/SA-TACtHzlQ">Nicusor Duta-Am trecut prin toate</a>
+    <em>Manele 2026</em>
+  </div>
+
+<div class="item">
+    <img src="https://i.ytimg.com/vi/wOC7OlAVbks/hqdefault.jpg" alt="Nicusor Duta-Ce greseala am facut" />
+    <a href="https://www.youtube.com/embed/wOC7OlAVbks">Nicusor Duta-Ce greseala am facut</a>
+    <em>Manele 2026</em>
+  </div>
+  
+<div class="item">
+    <img src="https://i.ytimg.com/vi/-CHdfpR6jXk/hqdefault.jpg" alt="Nicusor Duta-Am trecut prin viata" />
+    <a href="https://www.youtube.com/embed/-CHdfpR6jXk">Nicusor Duta-Am trecut prin viata</a>
+    <em>Manele 2026</em>
+  </div>
+
+<div class="item">
+    <img src="https://i.ytimg.com/vi/4-loV0ZkLb4/hqdefault.jpg" alt="Nicusor Duta-Eu din suflet te am iubit" />
+    <a href="https://www.youtube.com/embed/4-loV0ZkLb4">Nicusor Duta-Eu din suflet te am iubit</a>
+    <em>Manele 2026</em>
+  </div>
+
+<div class="item">
+    <img src="https://i.ytimg.com/vi/rWiZxUGz46I/hqdefault.jpg" alt="Nicusor Duta-Mi-am gasit jumatatea" />
+    <a href="https://www.youtube.com/embed/rWiZxUGz46I">Nicusor Duta-Mi-am gasit jumatatea</a>
+    <em>Manele 2026</em>
+  </div>
+  
+<div class="item">
+    <img src="https://i.ytimg.com/vi/uC7Knj6Kzsc/hqdefault.jpg" alt="Nicusor Duta-Fericirea mea esti tu" />
+    <a href="https://www.youtube.com/embed/uC7Knj6Kzsc">Nicusor Duta-Fericirea mea esti tu</a>
+    <em>Manele 2026</em>
+  </div>
+  
+  
 `;
