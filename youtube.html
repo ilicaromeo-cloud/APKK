@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -209,6 +208,10 @@ main{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 .state{grid-column:1/-1;padding:20px;color:var(--muted);text-align:center}
 .state.err{color:#ef4444}
 .zone-search{width:100%;max-width:420px;margin:0 0 10px 0;background:var(--panel);color:var(--text);border:1px solid rgba(139,92,246,.25);padding:.55rem .7rem;border-radius:12px;height:42px;display:block}
+.zone-pagination{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.75rem;padding:1.25rem 0 .5rem}
+.zone-pagination[hidden],.modal-box.html-fullscreen .zone-pagination{display:none}
+.zone-pagination button:disabled{opacity:.4;cursor:default}
+.zone-pagination span{color:var(--muted);font-size:.85rem;text-align:center}
 .film-container img{background:#020617}
 #episodes.episodes{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
 @media (max-width:640px){#episodes.episodes{grid-template-columns:1fr}}
@@ -239,10 +242,11 @@ main{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
     <div id="details" class="details-wrap"></div>
     <div class="player-wrap" id="player"></div>
     <div id="episodes" class="episodes"></div>
+    <nav id="zonePagination" class="zone-pagination" aria-label="Paginare videoclipuri" hidden></nav>
   </div>
 </div>
 
-<script>
+<script type="c74a96705fb6433a4e200270-text/javascript">
 
 /* ===================== YouTube Zone =====================
    Lista principala: youtubezone.js -> window.dateExtraZoneItems = [{id,title,badge,img,jsUrl}, ...]
@@ -250,8 +254,9 @@ main{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
    Fiecare jsUrl: window.dateCeva = `<div class="item"><img src=".."><a href="..">Titlu</a><em>Descriere</em></div>...`
    (aceeasi logica ca openScriptBasedShow din filme.html). */
 const YOUTUBEZONE_URL = 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/youtubezone.js';
-const FALLBACK_POSTER = 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg'';
+const FALLBACK_POSTER = 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg';
 const ZONE_CACHE_MS = 5 * 60 * 1000;
+const ZONE_PAGE_SIZE = 50;
 
 let lastCard = null;
 let modalOpen = false;
@@ -261,6 +266,7 @@ const modalBox = document.getElementById('modalBox');
 const details = document.getElementById('details');
 const player = document.getElementById('player');
 const episodes = document.getElementById('episodes');
+const zonePagination = document.getElementById('zonePagination');
 const closeBtn = document.getElementById('close');
 const btnZone = document.getElementById('btnZone');
 const section = document.getElementById('section');
@@ -415,6 +421,7 @@ function openZone(zone, card) {
   const titlu = zone.title;
   lastCard = card || null; modalOpen = true; window.__modalOpen = true; modal.style.display = 'flex';
   episodes.innerHTML = '<div style="padding:20px; color:var(--neon);">Se descarcă episoadele...</div>';
+  zonePagination.hidden = true; zonePagination.innerHTML = '';
   modalBox.classList.remove('html-fullscreen'); scrollToPlayer();
   details.innerHTML = `<h2>${esc(titlu)}</h2><p>${esc(zone.badge || 'Vizionare online.')}</p>` +
     `<button class="btn-fs" id="fsToggleBtn" tabindex="0">📺 ECRAN COMPLET</button>` +
@@ -431,18 +438,22 @@ function openZone(zone, card) {
     if (!modalOpen || lastCard !== (card || null)) return;   // utilizatorul a inchis/schimbat intre timp
     if (!list) { episodes.innerHTML = '<div style="padding:20px; color:#ef4444;">Eroare structură date.</div>'; return; }
     if (!list.length) { episodes.innerHTML = '<div style="padding:20px; color:var(--muted);">Colecția nu conține episoade.</div>'; return; }
-    episodes.innerHTML = '';
-    if (list.length > 30) {
-      const search = document.createElement('input');
-      search.className = 'zone-search'; search.placeholder = `Caută în ${list.length} intrări…`; search.tabIndex = 0;
-      search.oninput = () => {
-        const q = search.value.trim().toLowerCase();
-        episodes.querySelectorAll('.film-container').forEach(c => { c.style.display = !q || c.dataset.q.includes(q) ? '' : 'none'; });
-      };
-      details.appendChild(search);
-    }
-    const autoplayItems = [];
-    list.forEach((ep, idx) => {
+    let currentPage = 1;
+    let filteredIndices = list.map((_, idx) => idx);
+    // Autoplay pastreaza intreaga categorie, inclusiv videoclipurile de pe alte pagini.
+    const autoplayItems = list.map(ep => ({ url: ep.url, el: null, epId: episodeId(titlu, ep), nume: ep.nume }));
+    registerAutoplayList(autoplayItems, () => updateCardCompletion(card, zone));
+
+    function renderPage(focusFirst) {
+      autoplayList.forEach(item => { item.el = null; });
+      episodes.innerHTML = '';
+      const totalPages = Math.max(1, Math.ceil(filteredIndices.length / ZONE_PAGE_SIZE));
+      currentPage = Math.max(1, Math.min(currentPage, totalPages));
+      const start = (currentPage - 1) * ZONE_PAGE_SIZE;
+      const pageIndices = filteredIndices.slice(start, start + ZONE_PAGE_SIZE);
+      if (!pageIndices.length) episodes.innerHTML = '<div class="state">Niciun videoclip găsit.</div>';
+      pageIndices.forEach(idx => {
+      const ep = list[idx];
       const container = document.createElement('div'); container.className = 'film-container';
       container.dataset.q = `${ep.nume} ${ep.descriere}`.toLowerCase();
       container.innerHTML = `<img src="${esc(ep.imagine || zone.img || FALLBACK_POSTER)}" alt="" loading="lazy">`;
@@ -458,10 +469,34 @@ function openZone(zone, card) {
         const existentIframe = player.querySelector('iframe'); if (existentIframe) existentIframe.remove();
         player.insertBefore(createPlayerIframe(ep.url, true), player.firstChild); scrollToPlayer();
       };
-      autoplayItems.push({ url: ep.url, el: el, epId: epId, nume: ep.nume });
+      autoplayList[idx].el = el;
       container.appendChild(el); episodes.appendChild(container);
-    });
-    registerAutoplayList(autoplayItems, () => updateCardCompletion(card, zone));
+      });
+      zonePagination.hidden = !filteredIndices.length;
+      zonePagination.innerHTML = `<button id="zonePrev" type="button" tabindex="0"${currentPage === 1 ? ' disabled' : ''}>Înapoi</button>` +
+        `<span aria-live="polite">Pagina ${currentPage} din ${totalPages} · ${filteredIndices.length ? start + 1 : 0}–${start + pageIndices.length} din ${filteredIndices.length} videoclipuri</span>` +
+        `<button id="zoneNext" type="button" tabindex="0"${currentPage === totalPages ? ' disabled' : ''}>Înainte</button>`;
+      document.getElementById('zonePrev').onclick = () => { currentPage--; renderPage(true); };
+      document.getElementById('zoneNext').onclick = () => { currentPage++; renderPage(true); };
+      if (focusFirst) {
+        const first = episodes.querySelector('.episode');
+        if (first) setFocus(first);
+      }
+    }
+
+    if (list.length > 30) {
+      const search = document.createElement('input');
+      search.className = 'zone-search'; search.placeholder = `Caută în ${list.length} intrări…`; search.tabIndex = 0;
+      search.setAttribute('aria-label', 'Caută în toate videoclipurile categoriei');
+      search.oninput = () => {
+        const q = search.value.trim().toLowerCase();
+        filteredIndices = list.map((_, idx) => idx).filter(idx => !q || `${list[idx].nume} ${list[idx].descriere}`.toLowerCase().includes(q));
+        currentPage = 1;
+        renderPage(false);
+      };
+      details.appendChild(search);
+    }
+    renderPage(false);
     player.insertBefore(createPlayerIframe(list[0].url), player.firstChild);
   });
 }
@@ -696,9 +731,9 @@ function updateYtStatus() {
 
 function markItemWatched(i) {
   const item = autoplayList[i];
-  if (!item || !item.el) return;
+  if (!item) return;
   if (item.epId) markAsWatched(item.epId);
-  item.el.classList.add('watched');
+  if (item.el) item.el.classList.add('watched');
 }
 
 function ytItemIndexForVideoId(vid) {
@@ -917,5 +952,5 @@ closeBtn.onclick = () => closeModal(); modal.onclick = e => { if (e.target === m
 renderZones(false);
 
 </script>
-</body>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="c74a96705fb6433a4e200270-|49" defer></script></body>
 </html>
