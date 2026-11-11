@@ -13041,5 +13041,805 @@ window.dateInsulaIubiriiReuniuni = `
     <a href="https://www.youtube.com/embed/kpUr7a6Xv_c">Bianca Cretu Nu Sunt Fata Ta</a>
     <em>Manele 2026</em>
   </div>
+  
+  <item>
+<title>Malina Strainatate</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=eZ1u5VyrlV4</link>
+<thumbnail>https://i.ytimg.com/vi/eZ1u5VyrlV4/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/eZ1u5VyrlV4/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Mary Talent X Laura Bruma Vreau Doar Dragostea Ta</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Rz3GlYt8Wyk</link>
+<thumbnail>https://i.ytimg.com/vi/Rz3GlYt8Wyk/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Rz3GlYt8Wyk/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Carmen De La Salciua Mai Lasati Ma In Supararea Mea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=BYhbVlYy9vo</link>
+<thumbnail>https://i.ytimg.com/vi/BYhbVlYy9vo/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/BYhbVlYy9vo/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Pirvu Mama Ce Fraier Am Fost</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=5VbKg55gDAo</link>
+<thumbnail>https://i.ytimg.com/vi/5VbKg55gDAo/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/5VbKg55gDAo/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Adrian Norocel Aviz Dusmanoaselor Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=-23gNu-595M</link>
+<thumbnail>https://i.ytimg.com/vi/-23gNu-595M/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/-23gNu-595M/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lele Bolnavi Amandoi Acustic</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=V4k4vETjuhE</link>
+<thumbnail>https://i.ytimg.com/vi/V4k4vETjuhE/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/V4k4vETjuhE/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lco Music Spune Tu Te Merau</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Tivdvip6T1I</link>
+<thumbnail>https://i.ytimg.com/vi/Tivdvip6T1I/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Tivdvip6T1I/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Elys Cata Dragoste Iti Trimit</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Vaa9KuUxpMg</link>
+<thumbnail>https://i.ytimg.com/vi/Vaa9KuUxpMg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Vaa9KuUxpMg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Costel Dinu Misca Te Ca In Arabia</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Nmhu8LJncvY</link>
+<thumbnail>https://i.ytimg.com/vi/Nmhu8LJncvY/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Nmhu8LJncvY/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Aryo Kardinal Band Femeia Sri Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=aFRKRDNJ9Y8</link>
+<thumbnail>https://i.ytimg.com/vi/aFRKRDNJ9Y8/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/aFRKRDNJ9Y8/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Anghel De La Vienna Nu Te Mai Sun</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=s6-ZrLhtJWk</link>
+<thumbnail>https://i.ytimg.com/vi/s6-ZrLhtJWk/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/s6-ZrLhtJWk/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Madalin Busuioc Am Si Haz Cover Live Mariano Hit 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=NIVKGqn07Wc</link>
+<thumbnail>https://i.ytimg.com/vi/NIVKGqn07Wc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/NIVKGqn07Wc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Vladut Cutramuru Ciuda Ciuda Ciuda</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=wbc3IoVFE04</link>
+<thumbnail>https://i.ytimg.com/vi/wbc3IoVFE04/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/wbc3IoVFE04/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Dorina Hoza Viata M Ai Trecut Prin Toate</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=eQ-iI5kpAxc</link>
+<thumbnail>https://i.ytimg.com/vi/eQ-iI5kpAxc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/eQ-iI5kpAxc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Anghel De La Vienna Cover Daca As Ramane Surd</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=g4rAWpfK62U</link>
+<thumbnail>https://i.ytimg.com/vi/g4rAWpfK62U/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/g4rAWpfK62U/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Vali De La Slatina Mosu Baba Live 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=xO3jnWiT4d0</link>
+<thumbnail>https://i.ytimg.com/vi/xO3jnWiT4d0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/xO3jnWiT4d0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Live Iuly Neamtu Cere Mi Tot Iti Dau Ce Vrei</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=V47jsIrPZ3o</link>
+<thumbnail>https://i.ytimg.com/vi/V47jsIrPZ3o/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/V47jsIrPZ3o/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Danny Esti Tot Tot Tot</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=tAmaEsbZbKQ</link>
+<thumbnail>https://i.ytimg.com/vi/tAmaEsbZbKQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/tAmaEsbZbKQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Liviu Guta Insula Iubirii</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=JXgr_OziYfk</link>
+<thumbnail>https://i.ytimg.com/vi/JXgr_OziYfk/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/JXgr_OziYfk/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Alex Pustiu Ma Jur Pe Voi</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=8HFKvDdEmIg</link>
+<thumbnail>https://i.ytimg.com/vi/8HFKvDdEmIg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/8HFKvDdEmIg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Valentino Te Iubesc</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=HsywnfMtXzI</link>
+<thumbnail>https://i.ytimg.com/vi/HsywnfMtXzI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/HsywnfMtXzI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Varinia Lasa Ma Baiete</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=qKrDbOhL4qk</link>
+<thumbnail>https://i.ytimg.com/vi/qKrDbOhL4qk/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/qKrDbOhL4qk/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Farcas Dati Va In Dulceata Mea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=MQ--MMlBZZ4</link>
+<thumbnail>https://i.ytimg.com/vi/MQ--MMlBZZ4/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/MQ--MMlBZZ4/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nicolae Guta Omul Cu Zambet Pe Fata</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=_tyQsx-NgOI</link>
+<thumbnail>https://i.ytimg.com/vi/_tyQsx-NgOI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/_tyQsx-NgOI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nikolas Enache Am In Suflet Bucurie</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=gI7flCpqx10</link>
+<thumbnail>https://i.ytimg.com/vi/gI7flCpqx10/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/gI7flCpqx10/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Tzanca Uraganu Mi Am Pus Inima Pe Masa Scrisoarea A Doua</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=hYgM1BLkIhs</link>
+<thumbnail>https://i.ytimg.com/vi/hYgM1BLkIhs/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/hYgM1BLkIhs/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Florin Bunea X Giulia Daca Tu N Ai Leac</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=r6P1oEkJJLM</link>
+<thumbnail>https://i.ytimg.com/vi/r6P1oEkJJLM/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/r6P1oEkJJLM/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Madalin Gicuta Generalul Familiei</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=xQdor9uMk7c</link>
+<thumbnail>https://i.ytimg.com/vi/xQdor9uMk7c/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/xQdor9uMk7c/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Iulian Grigoras Si Marina De La Roma In Tarot Si In Cafea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=grtp0xhbw7k</link>
+<thumbnail>https://i.ytimg.com/vi/grtp0xhbw7k/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/grtp0xhbw7k/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Paul De La Brasov La Si Mercedes Pentru Logan 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=rt23oDY8Nzc</link>
+<thumbnail>https://i.ytimg.com/vi/rt23oDY8Nzc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/rt23oDY8Nzc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Costel Dinu Cel Mai Frumos Vis</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Dd6p8ipgz1s</link>
+<thumbnail>https://i.ytimg.com/vi/Dd6p8ipgz1s/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Dd6p8ipgz1s/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Cristi Mega X Marinica Namol Azi Lumea Te Pupa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=iaXHZUDwDPc</link>
+<thumbnail>https://i.ytimg.com/vi/iaXHZUDwDPc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/iaXHZUDwDPc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lucash Music Lasa Mama Biciu Jos Mama X Eu Ma Mut De Acasa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=s0sfEnmWQ7Q</link>
+<thumbnail>https://i.ytimg.com/vi/s0sfEnmWQ7Q/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/s0sfEnmWQ7Q/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Roberto Nici Cerul Nu Varsa Ploi</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=A59rkDe7N94</link>
+<thumbnail>https://i.ytimg.com/vi/A59rkDe7N94/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/A59rkDe7N94/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Deejay Killer Shiki Shiki Bum</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=O8LG1F5RQPs</link>
+<thumbnail>https://i.ytimg.com/vi/O8LG1F5RQPs/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/O8LG1F5RQPs/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Cristi Tiran Astazi Fie Ce O Fi Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=hiEgVcCk620</link>
+<thumbnail>https://i.ytimg.com/vi/hiEgVcCk620/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/hiEgVcCk620/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Mihaela Stan Bravii Orkestra Colaj De Manele</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=kK2erLOWB1U</link>
+<thumbnail>https://i.ytimg.com/vi/kK2erLOWB1U/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/kK2erLOWB1U/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Marian Pavel Si Ionuta Denisa Bud Azi E Bine X Maane Rau</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=l8KHy9UuWvI</link>
+<thumbnail>https://i.ytimg.com/vi/l8KHy9UuWvI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/l8KHy9UuWvI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Ticy X Diana Mit Toata Lumea Mea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=mXWyFuBk50Y</link>
+<thumbnail>https://i.ytimg.com/vi/mXWyFuBk50Y/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/mXWyFuBk50Y/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Costel Biju X Adrian Minune Jr X Mr Juve Pofta Inimii</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=jkfnHj-S0pc</link>
+<thumbnail>https://i.ytimg.com/vi/jkfnHj-S0pc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/jkfnHj-S0pc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Stefy Plange Inima In Mine</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=MRtV8y-RUmQ</link>
+<thumbnail>https://i.ytimg.com/vi/MRtV8y-RUmQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/MRtV8y-RUmQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Claudia Ionas Nu Sunt Perfecta Colaj</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=EmojSfU7Hg0</link>
+<thumbnail>https://i.ytimg.com/vi/EmojSfU7Hg0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/EmojSfU7Hg0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Claudia Puican Parintii Mei</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=hMY_dMKTavY</link>
+<thumbnail>https://i.ytimg.com/vi/hMY_dMKTavY/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/hMY_dMKTavY/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Arabu Buzunar De Milionar</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=-zgisxIpfYE</link>
+<thumbnail>https://i.ytimg.com/vi/-zgisxIpfYE/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/-zgisxIpfYE/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Ayan Tot Timpul Ia O De La Cap</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=8OxWoGdW8Bw</link>
+<thumbnail>https://i.ytimg.com/vi/8OxWoGdW8Bw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/8OxWoGdW8Bw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Maribass Puscaria E Grea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=wmK-4HIMqlQ</link>
+<thumbnail>https://i.ytimg.com/vi/wmK-4HIMqlQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/wmK-4HIMqlQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Jean De La Craiova Ce Familie Frumoasa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=96eOW1iWi8E</link>
+<thumbnail>https://i.ytimg.com/vi/96eOW1iWi8E/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/96eOW1iWi8E/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nikolas Sax Rana Deschisa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=joEJRb2HAhM</link>
+<thumbnail>https://i.ytimg.com/vi/joEJRb2HAhM/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/joEJRb2HAhM/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Florin Bora Pe Cine Iubesc</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=FBP836Yk5qo</link>
+<thumbnail>https://i.ytimg.com/vi/FBP836Yk5qo/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/FBP836Yk5qo/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Pirvu M Am Nascut Cu Stea In Frunte</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=gQLPmc92Gx8</link>
+<thumbnail>https://i.ytimg.com/vi/gQLPmc92Gx8/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/gQLPmc92Gx8/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Gabriel Dumitru Am Noroc Ork Marius Razbel</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=cXc-DFSzUqc</link>
+<thumbnail>https://i.ytimg.com/vi/cXc-DFSzUqc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/cXc-DFSzUqc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Deyu Music Nimeni Nu Stie</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=gA3KaBaHNw4</link>
+<thumbnail>https://i.ytimg.com/vi/gA3KaBaHNw4/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/gA3KaBaHNw4/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Manelele Viitorului X Dragos Clt Te Iau De Mana Ingerul Meu</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Wu0LtnAt23M</link>
+<thumbnail>https://i.ytimg.com/vi/Wu0LtnAt23M/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Wu0LtnAt23M/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Zeno Music X Coco Cat Te Am Cautat Prin Vieto Imaginare</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=wf2eGKCP-SE</link>
+<thumbnail>https://i.ytimg.com/vi/wf2eGKCP-SE/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/wf2eGKCP-SE/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Vali Vijelie X Lady Diana Daca Te Chem</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=5xEF-3mBkXg</link>
+<thumbnail>https://i.ytimg.com/vi/5xEF-3mBkXg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/5xEF-3mBkXg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Blondu De La Timisoara Am Colindat Toate Tarile</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=OgIA70IbjmE</link>
+<thumbnail>https://i.ytimg.com/vi/OgIA70IbjmE/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/OgIA70IbjmE/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Vali Vijelie X Mihai Priescu Tineretea Nu Sta N Loc</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=DP1yJcHTAkQ</link>
+<thumbnail>https://i.ytimg.com/vi/DP1yJcHTAkQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/DP1yJcHTAkQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Camelia Rosu X Liviu Guta Doamne Te Rog</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=OK1sgob_KmU</link>
+<thumbnail>https://i.ytimg.com/vi/OK1sgob_KmU/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/OK1sgob_KmU/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Dlp Toreador Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=l4W4jESW5Hs</link>
+<thumbnail>https://i.ytimg.com/vi/l4W4jESW5Hs/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/l4W4jESW5Hs/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Elys Inima De Piatra</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=pa8vSJ8EFKI</link>
+<thumbnail>https://i.ytimg.com/vi/pa8vSJ8EFKI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/pa8vSJ8EFKI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Camelia Pop X Ghita Mat S A Dat Duma Duma</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=vBceqmSOpMw</link>
+<thumbnail>https://i.ytimg.com/vi/vBceqmSOpMw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/vBceqmSOpMw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Rayssa X Amiri Tu Doar Tu</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Os34-_9hpvg</link>
+<thumbnail>https://i.ytimg.com/vi/Os34-_9hpvg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Os34-_9hpvg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Alin De La Bobesti E Cum Imi Place Mie</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=NHMjYKR77Z0</link>
+<thumbnail>https://i.ytimg.com/vi/NHMjYKR77Z0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/NHMjYKR77Z0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Florin Mitroi Cea Mai Frumoasa Femeie 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=PABfqSQ34Ow</link>
+<thumbnail>https://i.ytimg.com/vi/PABfqSQ34Ow/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/PABfqSQ34Ow/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Mihai Priescu Vali Vijelie Tineretea Nu Sta N Loc</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=_B8n4fI2CoA</link>
+<thumbnail>https://i.ytimg.com/vi/_B8n4fI2CoA/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/_B8n4fI2CoA/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Karma Si Am Sa Plang Doar Cand Tai Ceapa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=L9GIIwHC2Xw</link>
+<thumbnail>https://i.ytimg.com/vi/L9GIIwHC2Xw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/L9GIIwHC2Xw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nicky Yaya Preotu Boca Loca</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=souARo9c3Mc</link>
+<thumbnail>https://i.ytimg.com/vi/souARo9c3Mc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/souARo9c3Mc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Malina Avasiloaie Mai Lasa I Dracu De Bani</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=6o5-iBwFJEw</link>
+<thumbnail>https://i.ytimg.com/vi/6o5-iBwFJEw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/6o5-iBwFJEw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Brandy Asa Asa Asa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=eUokFOlUkTQ</link>
+<thumbnail>https://i.ytimg.com/vi/eUokFOlUkTQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/eUokFOlUkTQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Denisa Beatris Am Motive Sa Zambesc</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=gCNY1RKeolY</link>
+<thumbnail>https://i.ytimg.com/vi/gCNY1RKeolY/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/gCNY1RKeolY/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Allen Casian Tu Si Eu Inima Nebuna 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=iYpoE71ZX5g</link>
+<thumbnail>https://i.ytimg.com/vi/iYpoE71ZX5g/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/iYpoE71ZX5g/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Alberto Bratianu Floarea Mea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=kIENbDSXcb0</link>
+<thumbnail>https://i.ytimg.com/vi/kIENbDSXcb0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/kIENbDSXcb0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Stelian Romanu 7 Trandafiri Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=V6TDHNBTIAw</link>
+<thumbnail>https://i.ytimg.com/vi/V6TDHNBTIAw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/V6TDHNBTIAw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bianca Cretu Ai Tu Acel Ceva</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=OoUvMUQDQNc</link>
+<thumbnail>https://i.ytimg.com/vi/OoUvMUQDQNc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/OoUvMUQDQNc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Dan Draghici Eu Ti Am Dat Aripi Sa Zbori</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=LsXH5Iva16I</link>
+<thumbnail>https://i.ytimg.com/vi/LsXH5Iva16I/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/LsXH5Iva16I/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Leo De La Focsani Mai Stai Viata 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=womZ31NvLz8</link>
+<thumbnail>https://i.ytimg.com/vi/womZ31NvLz8/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/womZ31NvLz8/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Costel Biju X Ionut Florea Sexy Barista</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=481v_hB4rZ0</link>
+<thumbnail>https://i.ytimg.com/vi/481v_hB4rZ0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/481v_hB4rZ0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Deyu Music N Am Plecat Sa Uit De Casa</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=lAvGiSVYRHY</link>
+<thumbnail>https://i.ytimg.com/vi/lAvGiSVYRHY/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/lAvGiSVYRHY/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Alexia Nicole Alb Ma Voia Doar Cand Plecam</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=t4S8BiBG2wM</link>
+<thumbnail>https://i.ytimg.com/vi/t4S8BiBG2wM/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/t4S8BiBG2wM/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Denis Ramniceanu Am Iubit Candva</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=7ft3ILxBVyI</link>
+<thumbnail>https://i.ytimg.com/vi/7ft3ILxBVyI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/7ft3ILxBVyI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lco Music Te Am Ales</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=3JM5ZWvhOZU</link>
+<thumbnail>https://i.ytimg.com/vi/3JM5ZWvhOZU/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/3JM5ZWvhOZU/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Narcis X Costel Biju Cand Nu Mai Speram</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=jobLyXUCQUA</link>
+<thumbnail>https://i.ytimg.com/vi/jobLyXUCQUA/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/jobLyXUCQUA/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Dani Printul Banatului Risc Viata Si Libertatea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=PfpoGbZbqWw</link>
+<thumbnail>https://i.ytimg.com/vi/PfpoGbZbqWw/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/PfpoGbZbqWw/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Dlp Hazolina Live</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=-gzbc93ri5g</link>
+<thumbnail>https://i.ytimg.com/vi/-gzbc93ri5g/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/-gzbc93ri5g/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nikos Dragulina Imnul Atv Istilor</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=QQw7ChtcIy0</link>
+<thumbnail>https://i.ytimg.com/vi/QQw7ChtcIy0/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/QQw7ChtcIy0/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Vali Vijelie Georgiana Lobont As Pleca</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=lJ-DJW0Wfgg</link>
+<thumbnail>https://i.ytimg.com/vi/lJ-DJW0Wfgg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/lJ-DJW0Wfgg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lucash Music Ia Ne Doamne Banii</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=FoD8uMusREA</link>
+<thumbnail>https://i.ytimg.com/vi/FoD8uMusREA/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/FoD8uMusREA/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Bogdan Pirvu Lume Rea</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Ndwoz3hhRmQ</link>
+<thumbnail>https://i.ytimg.com/vi/Ndwoz3hhRmQ/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Ndwoz3hhRmQ/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Jador X Nikolas Sax Inima Nu Plange</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=6IRtfjixNvg</link>
+<thumbnail>https://i.ytimg.com/vi/6IRtfjixNvg/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/6IRtfjixNvg/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lele Bolnavi Amandoi</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=5hRW3qr3oCk</link>
+<thumbnail>https://i.ytimg.com/vi/5hRW3qr3oCk/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/5hRW3qr3oCk/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Cristi Chinezu Am Auzit Ca Pacatuieste</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=LEX3f1TxCQ8</link>
+<thumbnail>https://i.ytimg.com/vi/LEX3f1TxCQ8/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/LEX3f1TxCQ8/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Moro Ilo Imi Face Lumea Socoteala Live 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=JNDdBfySric</link>
+<thumbnail>https://i.ytimg.com/vi/JNDdBfySric/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/JNDdBfySric/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Iulian De La Vrancea Bomba X Am Dat Play La Fericire Live 2026</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=Q-C9gFhhS6M</link>
+<thumbnail>https://i.ytimg.com/vi/Q-C9gFhhS6M/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/Q-C9gFhhS6M/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Tzanca Uraganu Am Facut Cardio Aseara M Am Cuplat Cu O Domnisoara</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=0Fc6vEy0a7c</link>
+<thumbnail>https://i.ytimg.com/vi/0Fc6vEy0a7c/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/0Fc6vEy0a7c/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Alisia O Frumusete Te Vedeai</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=y5in1-apHoc</link>
+<thumbnail>https://i.ytimg.com/vi/y5in1-apHoc/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/y5in1-apHoc/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Cosmina Stoican Rai Pe Pamant Live 2026 Cover Theo Rose</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=EA9Q7ZOd-Ys</link>
+<thumbnail>https://i.ytimg.com/vi/EA9Q7ZOd-Ys/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/EA9Q7ZOd-Ys/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Rico Nadara Sistemul Lamborghini</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=K0YewVc43oI</link>
+<thumbnail>https://i.ytimg.com/vi/K0YewVc43oI/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/K0YewVc43oI/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Lco Music Am 7 Gagici</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=ufRyCSSc-us</link>
+<thumbnail>https://i.ytimg.com/vi/ufRyCSSc-us/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/ufRyCSSc-us/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Nicolae Guta Trage Ca Americanii</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=DDmpUMwZFTM</link>
+<thumbnail>https://i.ytimg.com/vi/DDmpUMwZFTM/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/DDmpUMwZFTM/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
+
+<item>
+<title>Petruta Sunt La Inaltime</title>
+<link>plugin://plugin.video.RomyLive/youtube/play/?video_id=iGi_UK0Q64o</link>
+<thumbnail>https://i.ytimg.com/vi/iGi_UK0Q64o/hqdefault.jpg</thumbnail>
+<fanart>https://i.ytimg.com/vi/iGi_UK0Q64o/hqdefault.jpg</fanart>
+<info>Manele 2026</info>
+</item>
 
 `;
