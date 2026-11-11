@@ -5,34 +5,34 @@ window.dateExtraZoneItems = [
     title: 'Manele', 
     badge: '★ Manele Youtube', 
     img: 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://documentarys.do.am/APK/youtube/manele.js' 
+    jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/manele.js' 
   },
   { 
     id: 'ez-romaneasca', 
     title: 'Romanesti', 
     badge: '★ Romanesti Youtube', 
     img: 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://documentarys.do.am/APK/youtube/romaneasca.js' 
+    jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/romaneasca.js' 
   },
   { 
     id: 'ez-clubbing', 
     title: 'Clubbing', 
     badge: '★ Clubbing Youtube', 
     img: 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://documentarys.do.am/APK/youtube/clubbing.js' 
+    jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/clubbing.js' 
   },
   { 
     id: 'ez-petrecere', 
     title: 'Petrecere', 
     badge: '★ Petrecere Youtube', 
     img: 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://documentarys.do.am/APK/youtube/petrecere.js' 
+    jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/petrecere.js' 
   },
   { 
     id: 'ez-straine', 
     title: 'Straine', 
     badge: '★ Straine Youtube', 
     img: 'https://img.magnific.com/premium-photo/abstract-digital-music-notes-floating-colorful-virtual-space_963421-21393.jpg', // Pune link-ul coperții tale
-    jsUrl: 'https://documentarys.do.am/APK/youtube/straine.js' 
+    jsUrl: 'https://raw.githubusercontent.com/ilicaromeo-cloud/APKK/refs/heads/main/straine.js' 
   }
 ];
